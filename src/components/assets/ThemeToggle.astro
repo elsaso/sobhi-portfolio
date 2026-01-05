@@ -1,16 +1,21 @@
 ---
 // Icons
 import Toggle from "@/components/fundations/icons/Toggle.astro";
+import Button from "@/components/fundations/elements/Button.astro";
 ---
-<button
-  class="fixed z-50 flex items-center justify-center font-semibold shadow-lg text-base-900 duration-300 rounded-xl size-12 bg-base-50 hover:bg-base-200 dark:bg-base-800 dark:hover:bg-base-900 dark:text-white dark:ring-base-800 ring-1 ring-inset ring-base-200 transition-opacity bottom-1 left-1 lg:bottom-4 lg:left-4"
+
+<Button
+  iconOnly
+  size="sm"
+  variant="muted"
+  class="fixed z-50 bottom-2 left-2 lg:bottom-4 lg:left-4"
   role="switch"
   aria-checked="false"
   id="theme-toggle"
 >
   <!-- Single SVG Icon -->
-  <Toggle class="dark:text-white text-base-900 size-5" />
-</button>
+  <Toggle slot="icon" size="sm" />
+</Button>
 <script>
   const toggle = document.getElementById("theme-toggle");
   function updateTheme(isDark) {

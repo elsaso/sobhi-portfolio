@@ -15,6 +15,9 @@ const { title, url, description, pubDate, image } = {
     day: "2-digit",
   }),
 };
+// Integrations: calculate reading time
+import readingTime from "reading-time";
+const timeToRead = readingTime(Astro.props.post.body);
 ---
 
 <article
@@ -29,9 +32,11 @@ const { title, url, description, pubDate, image } = {
     class="relative flex flex-col justify-between h-full p-4 overflow-hidden md:min-h-96 rounded-2xl group"
   >
     <div>
-      <Text tag="p" variant="textXS" class="dark:text-base-400 text-base-600"
-        >{pubDate}</Text
-      >
+      <Text tag="p" variant="textXS" class="dark:text-base-400 text-base-600">
+        <time> {pubDate}</time>
+        <span>·</span>
+        <span>{timeToRead.text}</span>
+      </Text>
       <Text
         tag="h3"
         variant="textBase"

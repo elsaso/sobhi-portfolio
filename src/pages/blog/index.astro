@@ -6,7 +6,6 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 import BlogCard from "@/components/blog/BlogCard.astro";
 import SubscribeCta from "@/components/blog/SubscribeCta.astro";
-import BlogSearch from "@/components/blog/BlogSearch.astro";
 // Get all posts
 import { getCollection } from "astro:content";
 // Fetch all posts and sort newest first
@@ -37,7 +36,6 @@ const sortedPosts = allPosts
         >
           I write about everything that I learn, join me on my journey.
         </Text>
-        <div class="mt-4"><BlogSearch /></div>
       </div>
       <div class="flex flex-col mt-12 gap-2">
         {sortedPosts.map((post) => <BlogCard post={post} />)}

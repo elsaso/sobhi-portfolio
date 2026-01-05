@@ -13,7 +13,7 @@ import SubscribeCta from "@/components/blog/SubscribeCta.astro";
 // Content
 const allPosts = await getCollection("posts");
 import { getCollection } from "astro:content";
-const { frontmatter, previous, next } = Astro.props;
+const { frontmatter, readingTime, previous, next } = Astro.props;
 ---
 
 <BaseLayout>
@@ -47,6 +47,8 @@ const { frontmatter, previous, next } = Astro.props;
               })
             }</time
           >
+          <span>·</span>
+          <span>{readingTime}</span>
         </Text>
         <Text
           tag="p"

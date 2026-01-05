@@ -1,4 +1,8 @@
 ---
+// Fundations
+import Button from "@/components/fundations/elements/Button.astro";
+// Icons
+import SearchIcon from "@/components/fundations/icons/Search.astro";
 import { getCollection } from "astro:content";
 const posts = await Promise.all(
   (await getCollection("posts")).map(async (post) => ({
@@ -10,26 +14,17 @@ const posts = await Promise.all(
 ---
 
 <div class="relative">
-  <button
+  <Button
+    iconOnly
+    size="sm"
+    variant="muted"
     type="button"
     id="searchButton"
-    class="flex items-center flex-auto w-full h-10 max-w-xs px-3 py-2 mx-auto text-center border-transparent rounded-full appearance-none outline outline-base-200 dark:outline-base-800 dark:text-white text-base-900 outline-inset shadow-base-800/5 dark:placeholder:text-base-400 dark:place-holder-text-base-600 duration-300 focus:border-base-500 focus:outline-none focus:outline-4 focus:outline-base-500/10 sm:text-sm bg-base-50 dark:bg-base-800"
     aria-label="Search posts"
+    class="fixed z-50 bottom-2 right-2 lg:bottom-4 lg:right-4"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="size-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-    </svg>
-  </button>
+    <SearchIcon slot="icon" size="sm" />
+  </Button>
   <div
     id="searchModal"
     class="fixed inset-0 z-50 hidden overflow-y-auto"
