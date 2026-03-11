@@ -1,5 +1,7 @@
 ---
-import { AstroSeo } from "@astrolib/seo";
+// AstroSeo is exported from .astro component; types are not declared in package
+// @ts-expect-error - package exports component from Astro file
+import { AstroSeo } from "@lexingtonthemes/seo";
 ---
 
 <AstroSeo

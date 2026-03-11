@@ -8,7 +8,7 @@ const posts = await Promise.all(
   (await getCollection("posts")).map(async (post) => ({
     title: post.data.title,
     description: post.data.description,
-    slug: post.slug,
+    slug: post.id,
   }))
 );
 ---

@@ -1,80 +1,63 @@
 {
-  "$ref": "#/definitions/projects",
-  "definitions": {
-    "projects": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "pubDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "live": {
+      "type": "string"
+    },
+    "logo": {
       "type": "object",
       "properties": {
-        "pubDate": {
-          "anyOf": [
-            {
-              "type": "string",
-              "format": "date-time"
-            },
-            {
-              "type": "string",
-              "format": "date"
-            },
-            {
-              "type": "integer",
-              "format": "unix-time"
-            }
-          ]
-        },
-        "title": {
+        "url": {
           "type": "string"
         },
-        "subtitle": {
-          "type": "string"
-        },
-        "live": {
-          "type": "string"
-        },
-        "logo": {
-          "type": "object",
-          "properties": {
-            "url": {
-              "type": "string"
-            },
-            "alt": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "url",
-            "alt"
-          ],
-          "additionalProperties": false
-        },
-        "image": {
-          "type": "object",
-          "properties": {
-            "url": {
-              "type": "string"
-            },
-            "alt": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "url",
-            "alt"
-          ],
-          "additionalProperties": false
-        },
-        "$schema": {
+        "alt": {
           "type": "string"
         }
       },
       "required": [
-        "pubDate",
-        "title",
-        "subtitle",
-        "live",
-        "logo",
-        "image"
+        "url",
+        "alt"
       ],
       "additionalProperties": false
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "alt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "$schema": {
+      "type": "string"
     }
   },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "required": [
+    "pubDate",
+    "title",
+    "subtitle",
+    "live",
+    "logo",
+    "image"
+  ],
+  "additionalProperties": false
 }

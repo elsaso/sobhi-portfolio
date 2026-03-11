@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import WorkLayout from '../../layouts/WorkLayout.astro';
 
 export async function getStaticPaths() {
   const work = await getCollection('work');
   return work.map(page => ({
-    params: { slug: page.slug },
+    params: { slug: page.id },
     props: { page },
     trailingSlash: false,
   }));
@@ -21,11 +21,11 @@ const validWork = allWork.filter(item => item.data?.title);
 const sorted = validWork; // or validWork.sort((a, b) => a.data.title.localeCompare(b.data.title))
 
 // Determine current, previous, and next entries
-const index = sorted.findIndex(item => item.slug === page.slug);
+const index = sorted.findIndex(item => item.id === page.id);
 const previous = sorted[index - 1] || null;
 const next = sorted[index + 1] || null;
 
-const { Content } = await page.render();
+const { Content } = await render(page);
 ---
 
 <WorkLayout frontmatter={page.data} previous={previous} next={next}>

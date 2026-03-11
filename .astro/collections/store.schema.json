@@ -1,105 +1,100 @@
 {
-  "$ref": "#/definitions/store",
-  "definitions": {
-    "store": {
-      "type": "object",
-      "properties": {
-        "price": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "preview": {
-          "type": "string"
-        },
-        "checkout": {
-          "type": "string"
-        },
-        "license": {
-          "type": "string"
-        },
-        "highlights": {
-          "type": "array",
-          "items": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "price": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "preview": {
+      "type": "string"
+    },
+    "checkout": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "highlights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
             "type": "string"
           }
         },
-        "description": {
+        "required": [
+          "title",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "url": {
           "type": "string"
         },
-        "features": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "title",
-              "description"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "image": {
-          "type": "object",
-          "properties": {
-            "url": {
-              "type": "string"
-            },
-            "alt": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "url",
-            "alt"
-          ],
-          "additionalProperties": false
-        },
-        "images": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "url": {
-                "type": "string"
-              },
-              "alt": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "url",
-              "alt"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "$schema": {
+        "alt": {
           "type": "string"
         }
       },
       "required": [
-        "price",
-        "title",
-        "preview",
-        "checkout",
-        "license",
-        "highlights",
-        "description",
-        "features",
-        "image",
-        "images"
+        "url",
+        "alt"
       ],
       "additionalProperties": false
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "alt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url",
+          "alt"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "$schema": {
+      "type": "string"
     }
   },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "required": [
+    "price",
+    "title",
+    "preview",
+    "checkout",
+    "license",
+    "highlights",
+    "description",
+    "features",
+    "image",
+    "images"
+  ],
+  "additionalProperties": false
 }

@@ -91,7 +91,7 @@ const { frontmatter, previous, next } = Astro.props;
             {
               previous && (
                 <a
-                  href={`/projects/${previous.slug}`}
+                  href={`/projects/${previous.id}`}
                   class="hover:opacity-80 "
                 >
                   <span class="block font-medium uppercase  text-base-900 dark:text-white">
@@ -108,7 +108,7 @@ const { frontmatter, previous, next } = Astro.props;
             {
               next && (
                 <a
-                  href={`/projects/${next.slug}`}
+                  href={`/projects/${next.id}`}
                   class="text-right  hover:opacity-80"
                 >
                   <span class="block font-medium uppercase  text-base-900 dark:text-white">

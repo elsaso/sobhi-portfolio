@@ -5,7 +5,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 // Icons
 import Plus from "@/components/fundations/icons/Plus.astro";
 const { title, url, subtitle, pubDate } = {
-  url: "/work/" + Astro.props.post.slug,
+  url: "/work/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   subtitle: Astro.props.post.data.subtitle,
   pubDate: new Date(Astro.props.post.data.pubDate).toLocaleDateString("en-US", {

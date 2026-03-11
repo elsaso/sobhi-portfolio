@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import ProjectsLayout from '../../layouts/ProjectsLayout.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map(page => ({
-    params: { slug: page.slug },
+    params: { slug: page.id },
     props: { page },
     trailingSlash: false,
   }));
@@ -21,11 +21,11 @@ const validProjects = allProjects.filter(item => item.data?.title);
 const sorted = validProjects; // or sorted by title if needed
 
 // Find current index and surrounding items
-const index = sorted.findIndex(item => item.slug === page.slug);
+const index = sorted.findIndex(item => item.id === page.id);
 const previous = sorted[index - 1] || null;
 const next = sorted[index + 1] || null;
 
-const { Content } = await page.render();
+const { Content } = await render(page);
 ---
 
 <ProjectsLayout frontmatter={page.data} previous={previous} next={next}>

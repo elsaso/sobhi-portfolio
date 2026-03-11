@@ -5,7 +5,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 // Icons
 import Plus from "@/components/fundations/icons/Plus.astro";
 const { title, url, subtitle } = {
-  url: "/projects/" + Astro.props.post.slug,
+  url: "/projects/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   subtitle: Astro.props.post.data.subtitle,
 };

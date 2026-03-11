@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 import Button from "@/components/fundations/elements/Button.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 const { title, url, description, pubDate, image } = {
-  url: "/blog/posts/" + Astro.props.post.slug,
+  url: "/blog/posts/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   description: Astro.props.post.data.description,
   image: Astro.props.post.data.image.url,
@@ -17,7 +17,7 @@ const { title, url, description, pubDate, image } = {
 };
 // Integrations: calculate reading time
 import readingTime from "reading-time";
-const timeToRead = readingTime(Astro.props.post.body);
+const timeToRead = Astro.props.post.body != null ? readingTime(Astro.props.post.body) : { text: "" };
 ---
 
 <article

@@ -1,6 +1,6 @@
 ---
 import BlogLayout from "@/layouts/BlogLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import readingTime from "reading-time";
 
 export async function getStaticPaths() {
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   );
 
   return sortedPosts.map((entry, index) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: {
       entry,
       previous: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
@@ -22,9 +22,9 @@ export async function getStaticPaths() {
 }
 
 const { entry, previous, next } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 // Calculate reading time from the raw markdown body
-const stats = readingTime(entry.body);
+const stats = entry.body != null ? readingTime(entry.body) : { text: "" };
 ---
 
 <BlogLayout

@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import StoreLayout from '../../layouts/StoreLayout.astro';
 
 export async function getStaticPaths() {
   const store = await getCollection('store');
   return store.map(page => ({
-    params: { slug: page.slug },
+    params: { slug: page.id },
     props: { page },
     trailingSlash: false,
   }));
@@ -21,11 +21,11 @@ const validStore = allStore.filter(item => item.data?.title);
 const sorted = validStore; // or validStore.sort((a, b) => a.data.title.localeCompare(b.data.title))
 
 // Get current, previous, and next
-const index = sorted.findIndex(item => item.slug === page.slug);
+const index = sorted.findIndex(item => item.id === page.id);
 const previous = sorted[index - 1] || null;
 const next = sorted[index + 1] || null;
 
-const { Content } = await page.render();
+const { Content } = await render(page);
 ---
 
 <StoreLayout frontmatter={page.data} previous={previous} next={next}>

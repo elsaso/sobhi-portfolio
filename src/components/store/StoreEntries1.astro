@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 import Button from "@/components/fundations/elements/Button.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 const { title, url, description, image, price } = {
-  url: "/store/" + Astro.props.post.slug,
+  url: "/store/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   price: Astro.props.post.data.price,
   description: Astro.props.post.data.description,
