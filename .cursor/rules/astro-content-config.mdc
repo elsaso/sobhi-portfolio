@@ -1,0 +1,14 @@
+---
+description: Flaco Astro site config and content collection definitions — change in sync
+globs:
+  - astro.config.*
+  - src/content.config.ts
+alwaysApply: false
+---
+
+# `astro.config.*` and `src/content.config.ts`
+
+- **Together**: Changing `site`, integrations, or markdown behavior in `astro.config.mjs` can affect sitemap, RSS `context.site`, and build output. Changing `src/content.config.ts` affects every `getCollection`/`render` consumer — edit only when necessary and update corresponding pages/layouts/components.
+- **This repo’s `astro.config.mjs`**: Vite plugin `@tailwindcss/vite`, `@astrojs/sitemap`, markdown Shiki `github-dark`, `site` placeholder.
+- **Collections** are only those exported from `src/content.config.ts` (`work`, `store`, `projects`, `posts`). No separate data files are required for routing beyond these entries.
+- **When adding an integration** (e.g. MDX): add it to `package.json` and `astro.config.mjs`, then verify content loaders and any RSS/search behavior still match.

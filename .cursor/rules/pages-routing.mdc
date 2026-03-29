@@ -1,0 +1,16 @@
+---
+description: Flaco routes — layouts, dynamic segments, content collection URLs
+globs: src/pages/**
+alwaysApply: false
+---
+
+# Pages & routing (`src/pages/**`)
+
+- **Default chrome**: Marketing and content pages should use `BaseLayout` unless they intentionally mirror another layout pattern already in the file.
+- **Dynamic detail routes** use `[...slug].astro` with `getStaticPaths` + `getCollection` + `render()`:
+  - Blog posts: `src/pages/blog/posts/[...slug].astro` → URLs `/blog/posts/{entry.id}` (see `BlogCard` href).
+  - Work / store / projects: `src/pages/work/[...slug].astro`, `store/[...slug].astro`, `projects/[...slug].astro` → `/work/{id}`, `/store/{id}`, `/projects/{id}` with `params.slug: page.id`.
+- **Indexes**: `/blog`, `/work`, `/store`, `/projects` list pages query the matching collection and sort/filter in-page.
+- **Tags**: `/blog/tags` and `/blog/tags/[tag].astro` derive from `posts` collection `tags` arrays.
+- **RSS**: `src/pages/rss.xml.js` exists for `/rss.xml`; verify it matches where blog markdown actually lives (`src/content/posts/` vs any `src/pages/blog/*.md`).
+- **System / forms**: `src/pages/system/*` and `src/pages/forms/*` are static Astro pages for the design system and form demos — not content collections.

@@ -1,0 +1,13 @@
+---
+description: Flaco content layer — schemas, frontmatter, image() paths under src/content
+globs: src/content/**
+alwaysApply: false
+---
+
+# Content (`src/content/**`)
+
+- **Schema source of truth**: `src/content.config.ts`. Collections: `work`, `store`, `projects`, `posts` (folders `work/`, `store/`, `projects/`, `posts/`).
+- **Do not** add optional/required fields to Zod schemas without updating every consumer (`getCollection` callers, layouts passing `frontmatter`, cards, `Search.astro`, etc.).
+- **Images**: Use the `image()` helper fields exactly as defined (`image.url`, `image.alt`; store also `images[]`). Paths should follow existing entries (typically under `src/images/...`).
+- **Templates**: Copy frontmatter shape from `src/content/work/1.md`, `src/content/store/1.md`, `src/content/projects/1.md`, `src/content/posts/1.md` as appropriate.
+- **Formats**: Loader allows `.md` and `.mdx`; this repo does not list `@astrojs/mdx` in `package.json` — use `.md` unless MDX is added to the project.

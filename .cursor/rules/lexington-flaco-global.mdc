@@ -1,0 +1,14 @@
+---
+description: Lexington Flaco theme-wide conventions (imports, fundations, minimal diffs)
+alwaysApply: true
+---
+
+# Flaco — global conventions
+
+- **Package**: `@lexington/flaco`. This is the Lexington Themes **Flaco** Astro template; prefer existing patterns over new abstractions.
+- **Imports**: Use the `@/` alias for `src/*` (e.g. `@/layouts/BaseLayout.astro`, `@/components/fundations/...`).
+- **`fundations` folder**: The directory is spelled **`fundations`** (not "foundations"). Do not rename `src/components/fundations/` or string references to it.
+- **Layouts**: Page-level shells live in `src/layouts/` (`BaseLayout`, `BlogLayout`, `WorkLayout`, `StoreLayout`, `ProjectsLayout`). Shared chrome (nav, footer, search) comes from `BaseLayout`, not duplicated per page.
+- **Head / SEO**: Default head stack is `BaseHead` → includes `Seo.astro` using `@lexingtonthemes/seo` (`AstroSeo`). When changing site-wide metadata, coordinate with `astro.config.mjs` `site` and real URLs in `Seo.astro`.
+- **Diff discipline**: Make the smallest change that satisfies the task; avoid drive-by refactors, new dependencies not justified by `package.json`, or unrelated files.
+- **External docs**: Lexington links for this theme are listed in `README.md` / `AGENTS.md` (`lexingtonthemes.com` templates, documentation, changelog, support).
