@@ -28,8 +28,7 @@
       "required": [
         "url",
         "alt"
-      ],
-      "additionalProperties": false
+      ]
     },
     "tags": {
       "type": "array",
@@ -48,6 +47,5 @@
     "author",
     "image",
     "tags"
-  ],
-  "additionalProperties": false
+  ]
 }

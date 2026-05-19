@@ -28,8 +28,7 @@
       "required": [
         "url",
         "alt"
-      ],
-      "additionalProperties": false
+      ]
     },
     "$schema": {
       "type": "string"
@@ -41,6 +40,5 @@
     "subtitle",
     "live",
     "image"
-  ],
-  "additionalProperties": false
+  ]
 }

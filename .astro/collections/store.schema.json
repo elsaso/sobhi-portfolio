@@ -41,8 +41,7 @@
         "required": [
           "title",
           "description"
-        ],
-        "additionalProperties": false
+        ]
       }
     },
     "image": {
@@ -58,8 +57,7 @@
       "required": [
         "url",
         "alt"
-      ],
-      "additionalProperties": false
+      ]
     },
     "images": {
       "type": "array",
@@ -76,8 +74,7 @@
         "required": [
           "url",
           "alt"
-        ],
-        "additionalProperties": false
+        ]
       }
     },
     "$schema": {
@@ -95,6 +92,5 @@
     "features",
     "image",
     "images"
-  ],
-  "additionalProperties": false
+  ]
 }

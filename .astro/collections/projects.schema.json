@@ -28,8 +28,7 @@
       "required": [
         "url",
         "alt"
-      ],
-      "additionalProperties": false
+      ]
     },
     "image": {
       "type": "object",
@@ -44,8 +43,7 @@
       "required": [
         "url",
         "alt"
-      ],
-      "additionalProperties": false
+      ]
     },
     "$schema": {
       "type": "string"
@@ -58,6 +56,5 @@
     "live",
     "logo",
     "image"
-  ],
-  "additionalProperties": false
+  ]
 }
