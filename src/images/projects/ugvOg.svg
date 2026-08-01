@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#07101F"/>
+  <g stroke="#142543" stroke-width="1">
+    <path d="M0 100H1600M0 200H1600M0 300H1600M0 400H1600M0 500H1600M0 600H1600M0 700H1600M0 800H1600"/>
+    <path d="M100 0V900M200 0V900M300 0V900M400 0V900M500 0V900M600 0V900M700 0V900M800 0V900M900 0V900M1000 0V900M1100 0V900M1200 0V900M1300 0V900M1400 0V900M1500 0V900"/>
+  </g>
+
+  <text x="100" y="102" fill="#93A4BF" font-family="Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="4">UGV TELEOPERATION SYSTEM</text>
+  <text x="100" y="143" fill="#4D6385" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">ROS 2 · JETSON ORIN NANO · QUEST 2</text>
+
+  <g transform="translate(150 245)">
+    <rect width="560" height="380" rx="30" fill="#0B1729" stroke="#21406C" stroke-width="3"/>
+    <text x="38" y="52" fill="#7EA6FF" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">FIELD UNIT</text>
+    <rect x="108" y="180" width="344" height="102" rx="20" fill="#142744" stroke="#3975E8" stroke-width="4"/>
+    <rect x="168" y="124" width="174" height="66" rx="14" fill="#183158" stroke="#3975E8" stroke-width="4"/>
+    <circle cx="186" cy="310" r="44" fill="#07101F" stroke="#5D8FF0" stroke-width="13"/>
+    <circle cx="374" cy="310" r="44" fill="#07101F" stroke="#5D8FF0" stroke-width="13"/>
+    <rect x="205" y="143" width="100" height="28" rx="6" fill="#07101F"/>
+    <text x="220" y="163" fill="#BFD2F7" font-family="Arial, sans-serif" font-size="14" font-weight="700">JETSON</text>
+    <path d="M405 178V106" stroke="#5D8FF0" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="405" cy="91" r="13" fill="#5D8FF0"/>
+    <path d="M92 213H42M468 213H518" stroke="#3975E8" stroke-width="3" stroke-dasharray="7 7"/>
+    <text x="39" y="246" fill="#657B9E" font-family="Arial, sans-serif" font-size="14">LiDAR</text>
+    <text x="464" y="246" fill="#657B9E" font-family="Arial, sans-serif" font-size="14">CAMERA</text>
+  </g>
+
+  <g transform="translate(890 245)">
+    <rect width="560" height="380" rx="30" fill="#0B1729" stroke="#21406C" stroke-width="3"/>
+    <text x="38" y="52" fill="#7EA6FF" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">OPERATOR</text>
+    <path d="M160 155C202 120 358 120 400 155L373 246C368 263 351 274 334 267L295 251C285 247 275 247 265 251L226 267C209 274 192 263 187 246L160 155Z" fill="#142744" stroke="#5D8FF0" stroke-width="5"/>
+    <rect x="204" y="167" width="72" height="48" rx="16" fill="#07101F"/>
+    <rect x="284" y="167" width="72" height="48" rx="16" fill="#07101F"/>
+    <path d="M150 286c38-30 222-30 260 0" stroke="#3975E8" stroke-width="3" stroke-dasharray="8 9"/>
+    <text x="221" y="326" fill="#93A4BF" font-family="Arial, sans-serif" font-size="16" font-weight="700">IMMERSIVE CONTROL</text>
+  </g>
+
+  <path d="M735 364h130" stroke="#3975E8" stroke-width="4" stroke-dasharray="10 10"/>
+  <path d="m845 348 20 16-20 16M755 487l-20 16 20 16h110" stroke="#3975E8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="748" y="395" width="106" height="60" rx="30" fill="#10264A" stroke="#3975E8" stroke-width="2"/>
+  <text x="777" y="431" fill="#D6E3FF" font-family="Arial, sans-serif" font-size="15" font-weight="700">WebRTC</text>
+
+  <g transform="translate(150 690)">
+    <rect width="300" height="82" rx="18" fill="#0B1729" stroke="#21406C" stroke-width="2"/>
+    <circle cx="39" cy="41" r="9" fill="#3B82F6"/>
+    <text x="64" y="37" fill="#D6E3FF" font-family="Arial, sans-serif" font-size="16" font-weight="700">PERCEPTION</text>
+    <text x="64" y="59" fill="#657B9E" font-family="Arial, sans-serif" font-size="13">YOLOv8 · sensor fusion</text>
+  </g>
+  <g transform="translate(500 690)">
+    <rect width="300" height="82" rx="18" fill="#0B1729" stroke="#21406C" stroke-width="2"/>
+    <circle cx="39" cy="41" r="9" fill="#3B82F6"/>
+    <text x="64" y="37" fill="#D6E3FF" font-family="Arial, sans-serif" font-size="16" font-weight="700">MOTION</text>
+    <text x="64" y="59" fill="#657B9E" font-family="Arial, sans-serif" font-size="13">UART · watchdog · e-stop</text>
+  </g>
+  <g transform="translate(850 690)">
+    <rect width="300" height="82" rx="18" fill="#0B1729" stroke="#21406C" stroke-width="2"/>
+    <circle cx="39" cy="41" r="9" fill="#3B82F6"/>
+    <text x="64" y="37" fill="#D6E3FF" font-family="Arial, sans-serif" font-size="16" font-weight="700">STREAMING</text>
+    <text x="64" y="59" fill="#657B9E" font-family="Arial, sans-serif" font-size="13">signaling · relay · KPI</text>
+  </g>
+  <g transform="translate(1200 690)">
+    <rect width="250" height="82" rx="18" fill="#0B1729" stroke="#21406C" stroke-width="2"/>
+    <circle cx="39" cy="41" r="9" fill="#22C55E"/>
+    <text x="64" y="37" fill="#D6E3FF" font-family="Arial, sans-serif" font-size="16" font-weight="700">EDGE</text>
+    <text x="64" y="59" fill="#657B9E" font-family="Arial, sans-serif" font-size="13">GPU inference</text>
+  </g>
+</svg>

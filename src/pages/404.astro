@@ -1,42 +1,30 @@
 ---
-// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Button from "@/components/fundations/elements/Button.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Page not found | Sobhi El-Safady"
+  description="The page you requested could not be found."
+  noindex
+>
   <section>
-    <Wrapper variant="standard" class="py-24">
-      <div class="text-center">
-        <Text
-          tag="h1"
-          variant="displayXL"
-          class="text-balance dark:text-white text-base-900"
-        >
-          Oh, oh...!
-          <span class="italic tracking-wide font-display"> 404 error </span>
-        </Text>
-        <Text
-          tag="p"
-          variant="textLG"
-          class="mt-4 dark:text-base-400 text-base-600"
-        >
-          An error has occurred. The page you are looking for may have been
-          moved, deleted, or does not exist. Please try again. If the problem
-          persists, please contact the site administrator.
-        </Text>
-
-        <Button
-          isLink
-          size="sm"
-          variant="muted"
+    <div class="mx-auto flex min-h-[65svh] max-w-3xl items-center justify-center px-8 py-24 text-center">
+      <div>
+        <p class="text-sm text-base-500 dark:text-base-400">404 error</p>
+        <h1 class="mt-5 text-balance text-4xl font-medium tracking-tight text-base-900 sm:text-5xl dark:text-white">
+          This page has
+          <span class="font-display italic tracking-wide text-base-600 dark:text-base-400">left the building.</span>
+        </h1>
+        <p class="mx-auto mt-5 max-w-lg text-base leading-7 text-base-600 dark:text-base-400">
+          The address may be incomplete, or the page may have moved.
+        </p>
+        <a
           href="/"
-          class="mx-auto mt-8 w-fit"
-          >Go back home
-        </Button>
+          class="mt-8 inline-flex h-10 items-center rounded-full bg-base-900 px-5 text-sm font-medium text-white transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-100 dark:text-base-950"
+        >
+          Back to portfolio
+        </a>
       </div>
-    </Wrapper>
+    </div>
   </section>
 </BaseLayout>

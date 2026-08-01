@@ -1,0 +1,89 @@
+---
+const experience = [
+  {
+    period: "Apr 2026 – Present",
+    company: "Vortex Health Analytics",
+    role: "Software & Data Engineer",
+    description:
+      "Builds ingestion, normalization, validation, and analytics workflows across fragmented clinical, operational, and billing systems.",
+  },
+  {
+    period: "Oct 2023 – Present",
+    company: "LEDEX",
+    role: "Technical Project Manager, Software & Automation",
+    description:
+      "Owns software and process-automation delivery for hazardous-location products, industrial lighting, quoting, procurement, and assembly workflows.",
+  },
+  {
+    period: "Jul 2022 – Present",
+    company: "Polaire Labs",
+    role: "Co-Founder & Lead Software Engineer",
+    description:
+      "Leads architecture and delivery for mobile applications, streaming platforms, SaaS products, APIs, integrations, and cloud deployments.",
+  },
+  {
+    period: "2022 & 2023",
+    company: "TelcoBridges",
+    role: "Software Engineer Intern",
+    description:
+      "Developed embedded C/C++ features in carrier-grade telephony systems and maintained Jenkins-driven system tests and CI/CD tooling.",
+  },
+  {
+    period: "Sep – Dec 2021",
+    company: "Pratt & Whitney Canada",
+    role: "Software Engineer Intern",
+    description:
+      "Delivered application features for aircraft-engine QA specifications, PLM workflows, engineering documents, testing, and releases.",
+  },
+  {
+    period: "Jan 2020 – Sep 2021",
+    company: "Witlaken",
+    role: "Software Developer",
+    description:
+      "Built Java ERP, MES, PLM, accounting, and healthcare modules with Python automation, SQL workflows, REST APIs, and CAD integrations.",
+  },
+  {
+    period: "Feb 2016 – Jan 2020",
+    company: "Dialexia",
+    role: "Junior Software Developer",
+    description:
+      "Implemented RFC-based SIP functionality, WebRTC and PBX services, an Android softphone, provisioning tools, QA, and production troubleshooting.",
+  },
+];
+---
+
+<section id="experience">
+  <div class="mx-auto max-w-3xl px-8 py-20 sm:py-24">
+    <div class="text-center">
+      <p class="text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Experience</p>
+      <h2 class="mt-2 text-4xl font-medium tracking-tight text-base-900 sm:text-5xl dark:text-white">
+        Ten years of engineering,
+        <span class="font-display italic tracking-wide text-base-600 dark:text-base-400">close to the operation.</span>
+      </h2>
+      <p class="mx-auto mt-5 max-w-2xl text-balance text-base leading-7 text-base-600 dark:text-base-400">
+        From protocol stacks and embedded systems to ERP workflows, mobile products, and data platforms.
+      </p>
+    </div>
+
+    <ol class="mt-12 divide-y divide-base-200 border-y border-base-200 dark:divide-base-800 dark:border-base-800">
+      {
+        experience.map((item) => (
+          <li class="py-6">
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+              <div>
+                <h3 class="font-medium text-base-900 dark:text-white">{item.company}</h3>
+                <p class="mt-1 text-sm text-base-600 dark:text-base-400">{item.role}</p>
+              </div>
+              <p class="shrink-0 text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">
+                {item.period}
+              </p>
+            </div>
+            <p class="mt-4 max-w-2xl text-sm leading-6 text-base-600 dark:text-base-400">
+              {item.description}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,62 +1,346 @@
----
-// Assets
-import { Image } from "astro:assets";
-import Avatar from "@/images/assets/avatar.png";
-import LogoCloud from "@/components/assets/LogoCloud.astro";
-// Fundations
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Icons
-import ChevronRight from "@/components/fundations/icons/ChevronRight.astro";
----
+<section
+  id="cinematic-hero"
+  class="cinematic-hero relative h-[360svh] bg-[#020710] text-white"
+  aria-label="Interactive introduction"
+>
+  <div class="sticky top-0 h-svh overflow-hidden">
+    <canvas
+      id="systems-canvas"
+      class="absolute inset-0 size-full"
+      aria-hidden="true"
+    ></canvas>
+    <div id="webgl-fallback" class="ring-fallback pointer-events-none absolute inset-0"></div>
 
-<section class="relative overflow-hidden">
-  <Wrapper variant="standard" class="relative py-24">
-    <div class="text-center">
-      <div class="flex justify-center">
-        <Text
-          tag="a"
-          variant="textSM"
-          underlined={true}
-          href="/studio"
-          class="flex items-center gap-2 group text-base-900 dark:text-white"
-        >
-          Hire me 2 spots open
-          <ChevronRight class="size-4" />
-        </Text>
+    <div class="hero-vignette pointer-events-none absolute inset-0"></div>
+    <div class="hero-grid pointer-events-none absolute inset-0 opacity-30"></div>
+
+    <div class="pointer-events-none absolute inset-x-0 top-4 z-20 hidden justify-center sm:flex">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">Traversal</span>
+        <div class="relative h-5 w-64 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
+          <div class="absolute inset-0 opacity-50 [background:repeating-linear-gradient(90deg,transparent_0_8px,rgba(255,255,255,.45)_8px_9px)]"></div>
+          <span id="hero-progress" class="absolute bottom-0 left-0 top-0 origin-left scale-x-0 border-r border-[#7dd3fc] bg-[#38bdf8]/10"></span>
+        </div>
+        <span id="hero-percent" class="w-9 font-mono text-[9px] tabular-nums text-white/50">000</span>
       </div>
-      <div class="mt-8 text-balance">
-        <Text
-          tag="h1"
-          variant="displayXL"
-          class="flex items-baseline justify-center font-medium gap-3 dark:text-white text-base-900"
-        >
-          Hi, I'm Jarvis
-          <Image
-            width={400}
-            height={200}
-            src={Avatar}
-            alt="#_"
-            class="size-12 rounded-xl md:size-16 hover:scale-150 duration-300 hover:rotate-6 ease-in-out"
-          />,
-        </Text>
-        <Text
-          tag="p"
-          variant="displayXL"
-          class="italic tracking-wide font-display dark:text-base-400 text-base-600"
-        >
-          software engineer.
-        </Text>
-      </div>
-      <Text
-        tag="p"
-        variant="textLG"
-        class="mt-4 dark:text-base-400 text-base-600 text-balance"
-      >
-        Crafting code, one line at a time: meet flaco, software engineer
-        extraordinaire, yo!
-      </Text>
-      <LogoCloud />
     </div>
-  </Wrapper>
+
+    <div class="pointer-events-none absolute left-5 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-4 lg:flex">
+      <span class="[writing-mode:vertical-rl] font-mono text-[9px] uppercase tracking-[0.3em] text-white/35">
+        El-Safady systems
+      </span>
+      <span class="h-16 w-px bg-gradient-to-b from-transparent via-[#38bdf8]/70 to-transparent"></span>
+      <span class="size-1.5 rounded-full bg-[#84cc16] shadow-[0_0_14px_#84cc16]"></span>
+    </div>
+
+    <div class="pointer-events-none absolute bottom-5 left-5 z-20 hidden items-end gap-4 sm:flex">
+      <div class="border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-md">
+        <p id="hero-phase" class="font-mono text-[9px] uppercase tracking-[0.18em] text-white/35">
+          Orbital reveal
+        </p>
+        <p id="hero-range" class="mt-1 font-mono text-xs tabular-nums text-white/70">
+          RNG 064.0 KM
+        </p>
+      </div>
+      <p id="hero-altitude" class="pb-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/35">
+        ALT 018.5 KM
+      </p>
+    </div>
+
+    <div class="pointer-events-none absolute bottom-5 right-5 z-20 hidden text-right sm:block">
+      <p class="font-mono text-[9px] uppercase tracking-[0.18em] text-white/35">Mississauga / CA</p>
+      <p class="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-[#84cc16]">Available / 2026</p>
+    </div>
+
+    <div class="hero-stage pointer-events-auto absolute inset-0 z-10 flex items-end px-6 pb-[12svh] sm:px-10 lg:px-[8vw]" data-stage="0">
+      <div class="hero-copy max-w-5xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-[#7dd3fc]">
+          01 // systems entry
+        </p>
+        <h1 class="mt-5 max-w-5xl text-balance text-[clamp(3rem,8vw,8rem)] font-medium uppercase leading-[0.86] tracking-[-0.065em]">
+          Software for
+          <span class="block text-white/60">the physical world.</span>
+        </h1>
+        <div class="mt-7 max-w-xl">
+          <p class="max-w-xl text-balance text-base leading-7 text-white/60 sm:text-lg">
+            I’m Sobhi El-Safady. I build embedded, enterprise, data, and automation
+            systems for manufacturing teams and real products.
+          </p>
+          <a
+            href="/Sobhi-El-Safady-Resume.pdf"
+            download
+            class="pointer-events-auto mt-5 inline-flex h-10 w-fit items-center rounded-full border border-white/20 bg-white/10 px-5 text-sm font-medium text-white backdrop-blur-md transition-[transform,background-color] duration-150 hover:bg-white/15 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7dd3fc]"
+          >
+            Download résumé
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stage pointer-events-none absolute inset-0 z-10 flex items-center justify-end px-6 opacity-0 sm:px-10 lg:px-[10vw]" data-stage="1">
+      <div class="max-w-2xl text-right">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-[#7dd3fc]">
+          02 // cross-layer engineering
+        </p>
+        <h2 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+          From embedded control
+          <span class="font-display italic tracking-normal text-white/45">to operational intelligence.</span>
+        </h2>
+        <p class="ml-auto mt-6 max-w-lg text-base leading-7 text-white/55">
+          C/C++, ROS 2, WebRTC, APIs, data pipelines, ERP, MES, PLM, and the interfaces
+          that make complex systems usable.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-stage pointer-events-none absolute inset-0 z-10 flex items-center px-6 opacity-0 sm:px-10 lg:px-[10vw]" data-stage="2">
+      <div class="max-w-2xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-[#84cc16]">
+          03 // one connected stack
+        </p>
+        <h2 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+          Edge. Data. Product.
+          <span class="block font-display italic tracking-normal text-white/45">No handoff gaps.</span>
+        </h2>
+        <p class="mt-6 max-w-lg text-base leading-7 text-white/55">
+          My work sits where hardware, product rules, customer workflows, and
+          production software have to operate as one system.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-stage pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6 text-center opacity-0" data-stage="3">
+      <div class="hero-final-copy relative max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-[#7dd3fc]">
+          04 // signal acquired
+        </p>
+        <h2 class="mt-5 text-balance text-5xl font-medium leading-[0.9] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
+          Enter the work.
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-base leading-7 text-white/55">
+          Industrial software, mobile products, robotics, streaming, and data systems
+          built for real operating conditions.
+        </p>
+        <a
+          href="#work"
+          class="pointer-events-auto mt-8 inline-flex h-11 items-center rounded-full bg-white px-6 text-sm font-medium text-black transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7dd3fc]"
+        >
+          View selected work
+          <span aria-hidden="true" class="ml-2">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="pointer-events-none absolute bottom-5 left-1/2 z-20 -translate-x-1/2 text-center sm:hidden">
+      <p class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/45">Scroll to traverse</p>
+      <span class="mx-auto mt-2 block h-8 w-px bg-gradient-to-b from-[#7dd3fc] to-transparent"></span>
+    </div>
+  </div>
 </section>
+
+<style>
+  .hero-vignette {
+    background:
+      radial-gradient(circle at center, transparent 20%, rgba(2, 7, 16, 0.12) 54%, rgba(2, 7, 16, 0.92) 100%),
+      linear-gradient(to bottom, rgba(2, 7, 16, 0.08), transparent 35%, rgba(2, 7, 16, 0.48));
+  }
+
+  .hero-grid {
+    background-image: radial-gradient(rgba(184, 229, 255, .18) .6px, transparent .6px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(circle at center, black, transparent 78%);
+  }
+
+  .ring-fallback {
+    background: radial-gradient(circle at 50% 44%, rgba(38, 157, 220, .1), transparent 38%), #020710;
+    transition: opacity 450ms cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: opacity;
+  }
+
+  .hero-stage {
+    will-change: opacity, transform, filter;
+  }
+
+  .hero-copy {
+    text-shadow: 0 2px 28px rgba(2, 7, 16, 0.78);
+  }
+
+  .hero-final-copy {
+    text-shadow: 0 2px 24px rgba(2, 7, 16, 0.9);
+  }
+
+  .hero-final-copy::before {
+    position: absolute;
+    z-index: -1;
+    inset: -5rem -7rem;
+    content: "";
+    background: radial-gradient(ellipse at center, rgba(2, 7, 16, .9) 0 24%, rgba(2, 7, 16, .64) 48%, transparent 72%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cinematic-hero {
+      height: 100svh;
+    }
+
+    .hero-stage:not([data-stage="0"]) {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const section = document.getElementById("cinematic-hero");
+  const canvas = document.getElementById("systems-canvas");
+  const fallback = document.getElementById("webgl-fallback");
+
+  if (section instanceof HTMLElement && canvas instanceof HTMLCanvasElement) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const compact = coarsePointer || window.innerWidth < 720;
+    const stages = [...section.querySelectorAll(".hero-stage")];
+    const progressBar = document.getElementById("hero-progress");
+    const percent = document.getElementById("hero-percent");
+    const range = document.getElementById("hero-range");
+    const altitude = document.getElementById("hero-altitude");
+    const phase = document.getElementById("hero-phase");
+    const ranges = [
+      [-0.08, 0.27],
+      [0.2, 0.5],
+      [0.44, 0.76],
+      [0.7, 1.08],
+    ];
+
+    let ringScene;
+    let targetProgress = 0;
+    let sceneActive = true;
+    const sceneModule = import("@/scripts/ringworld-scene");
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const rangeOpacity = (progress, start, end) => {
+      const fade = 0.075;
+      return clamp(Math.min((progress - start) / fade, (end - progress) / fade), 0, 1);
+    };
+
+    const updateStages = (progress) => {
+      stages.forEach((stage, index) => {
+        if (!(stage instanceof HTMLElement)) return;
+        const opacity = rangeOpacity(progress, ranges[index][0], ranges[index][1]);
+        stage.style.opacity = String(opacity);
+        stage.style.transform = `translate3d(0, ${(1 - opacity) * 18}px, 0)`;
+        stage.style.filter = `blur(${(1 - opacity) * 2}px)`;
+        stage.style.pointerEvents = opacity > 0.55 ? "auto" : "none";
+      });
+    };
+
+    const updateTelemetry = ({ progress, rangeKm, altitudeKm, phase: traversalPhase }) => {
+      if (progressBar instanceof HTMLElement) {
+        progressBar.style.transform = `scaleX(${progress})`;
+      }
+      if (percent) percent.textContent = String(Math.round(progress * 100)).padStart(3, "0");
+      if (range) range.textContent = `RNG ${rangeKm.toFixed(1).padStart(4, "0")} KM`;
+      if (altitude) altitude.textContent = `ALT ${altitudeKm.toFixed(1).padStart(4, "0")} KM`;
+      if (phase) phase.textContent = traversalPhase;
+    };
+
+    const updateFallback = (progress) => {
+      const value = reducedMotion ? 0 : progress;
+      const phaseName =
+        value < 0.2
+          ? "ORBITAL REVEAL"
+          : value < 0.45
+            ? "RIM APPROACH"
+            : value < 0.72
+              ? "RING INSERTION"
+              : "INTERIOR VECTOR";
+      updateStages(value);
+      updateTelemetry({
+        progress: value,
+        rangeKm: 0.8 + Math.pow(1 - value, 1.55) * 63.2,
+        altitudeKm: 0.55 + Math.pow(1 - value, 1.2) * 17.95,
+        phase: phaseName,
+      });
+    };
+
+    const updateScroll = () => {
+      if (reducedMotion) {
+        targetProgress = 0;
+      } else {
+        const rect = section.getBoundingClientRect();
+        const travel = Math.max(section.offsetHeight - window.innerHeight, 1);
+        targetProgress = clamp(-rect.top / travel, 0, 1);
+      }
+      updateStages(targetProgress);
+
+      if (ringScene) {
+        ringScene.setProgress(targetProgress);
+      } else {
+        updateFallback(targetProgress);
+      }
+    };
+
+    const resize = () => {
+      ringScene?.resize(window.innerWidth, window.innerHeight);
+    };
+
+    const pointerMove = (event) => {
+      if (!ringScene || compact || reducedMotion) return;
+      ringScene.setPointer(
+        (event.clientX / window.innerWidth - 0.5) * 2,
+        (event.clientY / window.innerHeight - 0.5) * 2,
+      );
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        sceneActive = entry.isIntersecting;
+        ringScene?.setActive(sceneActive);
+      },
+      { rootMargin: "20% 0px" },
+    );
+    observer.observe(section);
+
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("resize", resize, { passive: true });
+    if (!compact && !reducedMotion) {
+      window.addEventListener("pointermove", pointerMove, { passive: true });
+    }
+
+    updateScroll();
+
+    const initializeScene = async () => {
+      try {
+        const { createRingworldScene } = await sceneModule;
+        ringScene = createRingworldScene(canvas, {
+          compact,
+          reducedMotion,
+          onFrame: updateTelemetry,
+          onReady: () => {
+            if (fallback instanceof HTMLElement) fallback.style.opacity = "0";
+          },
+        });
+        ringScene.setActive(sceneActive);
+        ringScene.setProgress(targetProgress);
+      } catch {
+        if (fallback instanceof HTMLElement) fallback.style.opacity = "1";
+        updateFallback(targetProgress);
+      }
+    };
+
+    let sceneFrame = window.requestAnimationFrame(() => {
+      sceneFrame = window.requestAnimationFrame(initializeScene);
+    });
+
+    window.addEventListener(
+      "pagehide",
+      () => {
+        window.cancelAnimationFrame(sceneFrame);
+        observer.disconnect();
+        window.removeEventListener("scroll", updateScroll);
+        window.removeEventListener("resize", resize);
+        window.removeEventListener("pointermove", pointerMove);
+        ringScene?.destroy();
+      },
+      { once: true },
+    );
+  }
+</script>

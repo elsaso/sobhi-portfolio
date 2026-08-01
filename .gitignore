@@ -1,5 +1,6 @@
 # Build output
 dist/
+.astro/
 
 # Dependencies
 node_modules/
@@ -33,3 +34,6 @@ pnpm-debug.log*
 *.swp
 *.tmp
 Thumbs.db
+
+# Private source résumé (the sanitized public copy lives under public/)
+Sobhi_El-Safady_Resume.pdf

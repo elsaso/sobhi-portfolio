@@ -1,44 +1,47 @@
 ---
-// Icons
-import Toggle from "@/components/fundations/icons/Toggle.astro";
-import Button from "@/components/fundations/elements/Button.astro";
+const { class: className = "" } = Astro.props;
 ---
 
-<Button
-  iconOnly
-  size="sm"
-  variant="muted"
-  class="fixed z-50 bottom-2 left-2 lg:bottom-4 lg:left-4"
-  role="switch"
-  aria-checked="false"
+<button
+  type="button"
   id="theme-toggle"
+  class:list={[
+    "inline-flex size-9 items-center justify-center rounded-full border border-base-200 bg-base-100 text-base-700 transition-[transform,color,background-color,border-color] duration-150 active:scale-[0.97] dark:border-base-800 dark:bg-base-900 dark:text-base-300",
+    className,
+  ]}
+  aria-label="Use dark theme"
+  aria-pressed="false"
+  title="Change color theme"
 >
-  <!-- Single SVG Icon -->
-  <Toggle slot="icon" size="sm" />
-</Button>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    aria-hidden="true"
+    class="size-4"
+  >
+    <path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A7 7 0 0 1 12 3Z"></path>
+    <path d="M12 3v18"></path>
+  </svg>
+</button>
+
 <script>
   const toggle = document.getElementById("theme-toggle");
-  function updateTheme(isDark) {
-    // Toggle dark mode class on the root HTML element
-    document.documentElement.classList.toggle("dark", isDark);
-    toggle.setAttribute("aria-checked", isDark ? "true" : "false");
-    // Save the user's theme preference in localStorage
-    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+  if (toggle) {
+    const syncToggle = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      toggle.setAttribute("aria-pressed", String(isDark));
+      toggle.setAttribute("aria-label", isDark ? "Use light theme" : "Use dark theme");
+    };
+
+    syncToggle();
+
+    toggle.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      syncToggle();
+    });
   }
-  // Initialize theme based on localStorage or system preference
-  function initializeTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const isDark = savedTheme ? savedTheme === "dark" : systemPrefersDark;
-    updateTheme(isDark);
-  }
-  // Run initialization when page loads
-  initializeTheme();
-  // Handle toggle click event
-  toggle.addEventListener("click", () => {
-    const isDark = toggle.getAttribute("aria-checked") === "true";
-    updateTheme(!isDark);
-  });
 </script>

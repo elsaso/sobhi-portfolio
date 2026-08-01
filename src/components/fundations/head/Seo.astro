@@ -1,32 +1,61 @@
 ---
-
 import { AstroSeo } from "@lexingtonthemes/seo";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown>;
+}
+
+const { title, description, image, noindex = false, structuredData } = Astro.props;
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : undefined;
+const socialImage =
+  image && Astro.site ? new URL(image, Astro.site).toString() : undefined;
+
+const openGraph = {
+  ...(canonical ? { url: canonical } : {}),
+  title,
+  description,
+  ...(socialImage
+    ? {
+        images: [
+          {
+            url: socialImage,
+            width: 1200,
+            height: 630,
+            alt: "Sobhi El-Safady, software and data engineer",
+            type: "image/png",
+          },
+        ],
+      }
+    : {}),
+  site_name: "Sobhi El-Safady",
+  type: "website" as const,
+  locale: "en_CA",
+};
 ---
 
 <AstroSeo
-  title="Your Page Title"
-  description="A detailed description of your page content."
-  canonical="https://yourwebsite.com/current-page"
-  openGraph={{
-    url: "https://yourwebsite.com/current-page",
-    title: "Your Page Title",
-    description: "A detailed description of your page content.",
-    images: [
-      {
-        url: "https://yourwebsite.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Open Graph Image Alt",
-        type: "image/jpeg",
-      },
-    ],
-    site_name: "Your Site Name",
-    type: "website",
-    locale: "en_US",
-  }}
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={noindex}
+  nofollow={noindex}
+  openGraph={openGraph}
   twitter={{
-    handle: "@yourhandle",
-    site: "@yourwebsite",
     cardType: "summary_large_image",
   }}
 />
+
+{
+  structuredData && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  )
+}

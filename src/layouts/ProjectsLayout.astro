@@ -1,128 +1,126 @@
 ---
-// Assets
 import { Image } from "astro:assets";
-import ScrollUpButton from "@/components/assets/ScrollUpButton.astro";
-
-// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Button from "@/components/fundations/elements/Button.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Components
+
 const { frontmatter, previous, next } = Astro.props;
 ---
 
-<BaseLayout>
-  <ScrollUpButton />
-  <section>
-    <Wrapper class="py-24">
-      <div class="text-center">
+<BaseLayout
+  title={`${frontmatter.title} | Sobhi El-Safady`}
+  description={frontmatter.subtitle}
+>
+  <article>
+    <div class="mx-auto max-w-3xl px-8 py-20 sm:py-24">
+      <header class="text-center">
+        <a
+          href="/projects/"
+          class="group inline-flex items-center gap-2 rounded-sm text-sm text-base-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:text-base-400"
+        >
+          <span aria-hidden="true" class="transition-transform duration-150 group-hover:-translate-x-1">←</span>
+          All projects
+        </a>
         <Image
           src={frontmatter.logo.url}
           alt={frontmatter.logo.alt}
-          width={200}
-          height={200}
-          class="mx-auto shadow size-12 rounded-xl md:size-16 ring-base-200 dark:ring-base-800"
+          width={160}
+          height={160}
+          class="mx-auto mt-10 size-14 rounded-xl shadow ring-1 ring-base-200 dark:ring-base-800"
         />
-        <Text
-          tag="h1"
-          variant="displayXL"
-          class="mt-8 italic tracking-wide text-balance dark:text-white text-base-900 font-display"
-        >
+        <h1 class="mt-7 text-balance font-display text-5xl italic tracking-wide text-base-900 sm:text-6xl dark:text-white">
           {frontmatter.title}
-        </Text>
-        <Text
-          tag="p"
-          variant="textLG"
-          class="mt-4 dark:text-base-400 text-base-600 text-balance"
-        >
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-balance text-lg leading-8 text-base-600 dark:text-base-400">
           {frontmatter.subtitle}
-        </Text>
-      </div>
-      <div class="space-y-6">
-        <Image
-          src={frontmatter.image.url}
-          alt={frontmatter.image.alt}
-          width={800}
-          height={400}
-          class="object-cover object-center w-full mt-6 shadow rounded-2xl max-h-100"
-        />
-        <div class="flex items-center justify-between">
-          <Text
-            tag="p"
-            variant="textSM"
-            class="ml-2 dark:text-base-400 text-base-600"
-          >
-            Published: <time
-              datetime={new Date(frontmatter.pubDate).toLocaleDateString(
-                "en-US",
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "2-digit",
-                }
-              )}
-            >
-              {
-                new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "2-digit",
-                })
-              }</time
-            >
-          </Text>
-          <Button
-            isLink
-            size="base"
-            variant="muted"
-            href={frontmatter.live}
-            title={frontmatter.title}
-            >See it live
-          </Button>
+        </p>
+      </header>
+
+      <Image
+        src={frontmatter.image.url}
+        alt={frontmatter.image.alt}
+        width={1200}
+        height={675}
+        class="mt-10 aspect-[16/9] w-full rounded-2xl object-cover shadow"
+      />
+
+      <dl class="mt-6 grid gap-5 border-b border-base-200 pb-7 text-sm sm:grid-cols-3 dark:border-base-800">
+        <div>
+          <dt class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Role</dt>
+          <dd class="mt-2 leading-6 text-base-900 dark:text-white">{frontmatter.role}</dd>
         </div>
-        <Wrapper variant="prose">
-          <slot />
-        </Wrapper>
-        <nav
-          class="relative flex flex-col mt-24 text-xs md:flex-row lg:justify-between gap-4 lg:items-center"
-        >
-          <div>
-            {
-              previous && (
+        <div>
+          <dt class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Organization</dt>
+          <dd class="mt-2 leading-6 text-base-900 dark:text-white">{frontmatter.organization}</dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Period</dt>
+          <dd class="mt-2 leading-6 text-base-900 dark:text-white">{frontmatter.period}</dd>
+        </div>
+      </dl>
+
+      <div class="mt-7 flex flex-wrap items-center justify-between gap-5">
+        <ul class="flex flex-wrap gap-x-4 gap-y-2 text-xs text-base-500 dark:text-base-400" aria-label="Technologies used">
+          {frontmatter.technologies.map((technology) => <li>{technology}</li>)}
+        </ul>
+        {
+          frontmatter.links.length > 0 ? (
+            <div class="flex flex-wrap gap-2">
+              {frontmatter.links.map((link) => (
                 <a
-                  href={`/projects/${previous.id}`}
-                  class="hover:opacity-80 "
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex h-9 items-center rounded-full bg-base-200 px-4 text-xs font-medium text-base-950 transition-[transform,background-color] duration-150 hover:bg-base-100 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-900 dark:text-white dark:hover:bg-base-800"
                 >
-                  <span class="block font-medium uppercase  text-base-900 dark:text-white">
-                    Previous:
-                  </span>
-                  <span class="block  text-base-500 dark:text-base-400">
-                    {previous.data.title}
-                  </span>
+                  {link.label} ↗
                 </a>
-              )
-            }
-          </div>
-          <div>
-            {
-              next && (
-                <a
-                  href={`/projects/${next.id}`}
-                  class="text-right  hover:opacity-80"
-                >
-                  <span class="block font-medium uppercase  text-base-900 dark:text-white">
-                    Next:
-                  </span>
-                  <span class="block  text-base-500 dark:text-base-400">
-                    {next.data.title}
-                  </span>
-                </a>
-              )
-            }
-          </div>
-        </nav>
+              ))}
+            </div>
+          ) : (
+            <p class="text-xs text-base-500 dark:text-base-400">Code and report available on request</p>
+          )
+        }
       </div>
-    </Wrapper>
-  </section>
+
+      <div class="mt-10 rounded-2xl bg-base-100 p-6 dark:bg-base-900">
+        <p class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">At a glance</p>
+        <ul class="mt-4 space-y-3">
+          {
+            frontmatter.highlights.map((highlight) => (
+              <li class="flex gap-3 text-sm leading-6 text-base-700 dark:text-base-300">
+                <span class="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent-500"></span>
+                {highlight}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="prose prose-lg mx-auto mt-14 max-w-3xl prose-headings:font-normal prose-headings:text-base-900 prose-h2:font-display prose-h2:text-4xl prose-h2:italic prose-h2:tracking-wide prose-h3:text-2xl prose-p:leading-8 prose-p:text-base-600 prose-strong:font-medium prose-strong:text-base-900 prose-a:text-base-900 prose-li:text-base-600 dark:prose-invert dark:prose-headings:text-white dark:prose-p:text-base-400 dark:prose-strong:text-white dark:prose-a:text-white dark:prose-li:text-base-400">
+        <slot />
+      </div>
+
+      <nav aria-label="Project navigation" class="mt-20 flex flex-col justify-between gap-5 border-t border-base-200 pt-7 text-sm sm:flex-row dark:border-base-800">
+        <div>
+          {
+            previous && (
+              <a href={`/projects/${previous.id}`} class="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500">
+                <span class="block text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Previous</span>
+                <span class="mt-2 block text-base-900 group-hover:text-base-600 dark:text-white dark:group-hover:text-base-400">← {previous.data.title}</span>
+              </a>
+            )
+          }
+        </div>
+        <div>
+          {
+            next && (
+              <a href={`/projects/${next.id}`} class="group block text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 sm:text-right">
+                <span class="block text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Next</span>
+                <span class="mt-2 block text-base-900 group-hover:text-base-600 dark:text-white dark:group-hover:text-base-400">{next.data.title} →</span>
+              </a>
+            )
+          }
+        </div>
+      </nav>
+    </div>
+  </article>
 </BaseLayout>

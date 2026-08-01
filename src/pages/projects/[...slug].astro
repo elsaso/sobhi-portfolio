@@ -13,12 +13,9 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 
-// Fetch and filter valid project entries
 const allProjects = await getCollection('projects');
 const validProjects = allProjects.filter(item => item.data?.title);
-
-// Keep original order or optionally sort
-const sorted = validProjects; // or sorted by title if needed
+const sorted = validProjects.sort((a, b) => a.data.order - b.data.order);
 
 // Find current index and surrounding items
 const index = sorted.findIndex(item => item.id === page.id);

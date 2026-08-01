@@ -1,0 +1,67 @@
+---
+const capabilities = [
+  {
+    title: "Industrial software",
+    description:
+      "Configuration rules, BOMs, ERP/MES/PLM workflows, quoting, inventory, CAD/COM integrations, and process automation.",
+    tools: ["ERP", "MES", "PLM", "BOMs", "CAD / COM", "Automation"],
+  },
+  {
+    title: "Embedded & systems",
+    description:
+      "Software across hardware and network boundaries, from protocol stacks and UART control to video, sensors, and Linux services.",
+    tools: ["C / C++", "Java", "ROS 2", "WebRTC", "SIP / H.248", "Linux"],
+  },
+  {
+    title: "Product & data",
+    description:
+      "Production APIs, data pipelines, mobile and web applications, cloud deployments, tests, monitoring, and release automation.",
+    tools: ["Python", "TypeScript", "SQL", "React Native", "REST APIs", "CI / CD"],
+  },
+];
+---
+
+<section id="capabilities">
+  <div class="mx-auto max-w-3xl px-8 py-20 sm:py-24">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="font-display text-4xl italic tracking-wide text-base-900 dark:text-white">
+        Capabilities
+      </h2>
+      <p class="max-w-sm text-sm leading-6 text-base-500 sm:text-right dark:text-base-400">
+        Where software meets hardware, product data, and operational reality.
+      </p>
+    </div>
+
+    <div class="mt-8 divide-y divide-base-200 border-y border-base-200 dark:divide-base-800 dark:border-base-800">
+      {
+        capabilities.map((capability, index) => (
+          <article class="grid gap-5 py-7 sm:grid-cols-[2.2rem_1fr]">
+            <p class="font-display text-2xl italic text-base-400 dark:text-base-500">
+              {String(index + 1).padStart(2, "0")}
+            </p>
+            <div>
+              <h3 class="text-xl font-medium text-base-900 dark:text-white">{capability.title}</h3>
+              <p class="mt-3 text-sm leading-6 text-base-600 dark:text-base-400">{capability.description}</p>
+              <ul class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs text-base-500 dark:text-base-400">
+                {capability.tools.map((tool) => <li>{tool}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2">
+      <div>
+        <p class="text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Education</p>
+        <p class="mt-3 font-medium text-base-900 dark:text-white">B.Eng. Software Engineering</p>
+        <p class="mt-1 text-sm text-base-500 dark:text-base-400">ÉTS · 2020–2024</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Foundation</p>
+        <p class="mt-3 font-medium text-base-900 dark:text-white">DEC, Computer Science Technology</p>
+        <p class="mt-1 text-sm text-base-500 dark:text-base-400">Cégep de Rosemont · 2017–2020</p>
+      </div>
+    </div>
+  </div>
+</section>

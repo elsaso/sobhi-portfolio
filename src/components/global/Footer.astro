@@ -1,45 +1,36 @@
----
-// Assets
-import Logo from "@/components/assets/logo.astro";
-// Fundations
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Icons
-import Twitter from "@/components/fundations/icons/Twitter.astro";
-import Github from "@/components/fundations/icons/Github.astro";
-import Yotube from "@/components/fundations/icons/Youtube.astro";
----
+<footer id="contact">
+  <div class="mx-auto flex max-w-3xl flex-col px-8 py-24 text-center">
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="mx-auto size-8 text-base-900 dark:text-white">
+      <path d="M9 16h22v9H9zM33 8h22v9H33zM9 31h22v9H9zM33 23h22v9H33zM9 46h22v9H9zM33 38h22v9H33z" fill="currentColor"/>
+    </svg>
 
-<footer>
-  <Wrapper class="flex flex-col py-24">
-    <a href="/" aria-label="Go to homepage">
-      <Logo class="mx-auto size-8 dark:text-white text-base-900" />
-    </a>
+    <p class="mt-10 text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">
+      Based in Mississauga · Open across Canada
+    </p>
+    <h2 class="mx-auto mt-4 max-w-2xl text-balance text-3xl font-medium tracking-tight text-base-900 sm:text-4xl dark:text-white">
+      Looking for an engineer who understands
+      <span class="font-display italic tracking-wide text-base-600 dark:text-base-400">both code and operations?</span>
+    </h2>
 
-    <Text
-      tag="p"
-      variant="textBase"
-      class="mt-12 text-center leading-6 dark:text-base-400 text-base-600 text-balance"
-    >
-      © {new Date().getFullYear()} Copyright Lexington Themes. All rights reserved.
-      Designed and built in the Åland Islands by Michael Andreuzza.
-    </Text>
-
-    <div class="flex justify-center mt-12 space-x-6">
-      <a href="#" class="dark:text-base-400 text-base-600 hover:text-white">
-        <span class="sr-only">X</span>
-        <Twitter class="size-4" />
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        href="mailto:sobhi.safady@gmail.com"
+        class="inline-flex h-10 items-center rounded-full bg-base-900 px-5 text-sm font-medium text-white transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-100 dark:text-base-950"
+      >
+        Email Sobhi
       </a>
-
-      <a href="#" class="dark:text-base-400 text-base-600 hover:text-white">
-        <span class="sr-only">YouTube</span>
-        <Yotube class="size-4" />
-      </a>
-
-      <a href="#" class="dark:text-base-400 text-base-600 hover:text-white">
-        <span class="sr-only">GitHub</span>
-        <Github class="size-4" />
+      <a
+        href="https://www.linkedin.com/in/sobhi-e-3a949b1b4"
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex h-10 items-center rounded-full bg-base-200 px-5 text-sm font-medium text-base-950 transition-[transform,background-color] duration-150 hover:bg-base-100 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-900 dark:text-white dark:hover:bg-base-800"
+      >
+        LinkedIn
       </a>
     </div>
-  </Wrapper>
+
+    <p class="mx-auto mt-12 max-w-md text-sm leading-6 text-base-500 dark:text-base-400">
+      © {new Date().getFullYear()} Sobhi El-Safady. Software and data engineer.
+    </p>
+  </div>
 </footer>

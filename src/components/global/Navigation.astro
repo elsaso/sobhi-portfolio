@@ -1,201 +1,135 @@
 ---
-// Fundations
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Icons
-import Burger from "@/components/fundations/icons/Burger.astro";
-import Plus from "@/components/fundations/icons/Plus.astro";
+const isHome = Astro.url.pathname === "/";
+const anchor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 
-// Navigation links
-const navLinks = [
-  {
-    text: "Colors",
-    href: "/system/colors",
-  },
-  {
-    text: "Links",
-    href: "/system/link",
-  },
-  {
-    text: "Buttons",
-    href: "/system/buttons",
-  },
-  {
-    text: "Typography",
-    href: "/system/typography",
-  },
-  {
-    text: "Blog",
-    href: "/blog",
-  },
-  {
-    text: "Store",
-    href: "/store/",
-  },
-  {
-    text: "Projects",
-    href: "/projects/",
-  },
-  {
-    text: "Studio",
-    href: "/studio",
-  },
+const links = [
+  { text: "Home", href: "/" },
+  { text: "Selected work", href: "/projects/" },
+  { text: "Experience", href: anchor("experience") },
+  { text: "Capabilities", href: anchor("capabilities") },
+  { text: "Résumé", href: "/Sobhi-El-Safady-Resume.pdf", download: true },
+  { text: "Get in touch", href: "mailto:sobhi.safady@gmail.com" },
 ];
 ---
 
-<header>
-  <Wrapper variant="standard">
-    <nav
-      role="navigation"
-      class="items-center w-full py-4 grid grid-cols-2 gap-4"
+<header class:list={[isHome && "absolute inset-x-0 top-0 z-40 text-white"]}>
+  <nav
+    aria-label="Primary navigation"
+    class="mx-auto grid w-full max-w-3xl grid-cols-2 items-center gap-4 px-8 py-4"
+  >
+    <a
+      href="/"
+      class:list={[
+        "w-fit rounded-sm font-display text-2xl italic tracking-wide focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500",
+        isHome ? "text-white" : "text-base-900 dark:text-white",
+      ]}
     >
-      <div class="flex items-center gap-2">
-        <Text
-          tag="a"
-          variant="textXL"
-          href="/"
-          aria-label="Go to homepage"
-          class="italic text-center font-display text-base-900 dark:text-white"
-        >
-          Jarvis
-        </Text>
-      </div>
-      <div class="flex items-center justify-end gap-2">
-        <div class="flex items-center gap-2">
-          <a
-            class="text-sm text-base-500 hover:text-base-900 duration-300 dark:text-base-400 dark:hover:text-white"
-            href="/system/overview"
-          >
-            Overview
-          </a>
-          <a
-            class="text-sm text-base-500 hover:text-base-900 duration-300 dark:text-base-400 dark:hover:text-white"
-            href="https://buy.polar.sh/polar_cl_8Org8z858D00MUHXL3Jz5x6_VEmLnfI9sCQBW-QRDIU"
-          >
-            Buy Flaco
-          </a>
-        </div>
-        <!-- Always show menu toggle -->
-        <button
-          type="button"
-          id="menuToggle"
-          aria-controls="menu"
-          aria-expanded="false"
-          aria-label="Open menu"
-          class="focus-visible:outline-none"
-        >
-          <span class="sr-only">Toggle menu</span>
-          <Burger class="size-5 shrink-0 dark:text-white" />
-        </button>
-        <div
-          id="menuContent"
-          class="fixed inset-0 z-50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out bg-white/20 dark:bg-black/50 backdrop-blur-xl"
-        >
-          <Wrapper variant="standard" class="relative h-full px-8 py-4">
-            <button
-              id="closeMenu"
-              aria-label="Close menu"
-              class="flex ml-auto text-base-900 dark:text-white"
+      Sobhi
+    </a>
+
+    <div class="flex items-center justify-end gap-3">
+      <a
+        href="/Sobhi-El-Safady-Resume.pdf"
+        download
+        class:list={[
+          "text-sm transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500",
+          isHome
+            ? "text-white/60 hover:text-white"
+            : "text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white",
+        ]}
+      >
+        Résumé
+      </a>
+      <button
+        type="button"
+        id="menu-toggle"
+        aria-controls="menu"
+        aria-expanded="false"
+        aria-label="Open menu"
+        class:list={[
+          "grid size-9 place-items-center rounded-full transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500",
+          isHome ? "text-white" : "text-base-900 dark:text-white",
+        ]}
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" class="size-5">
+          <path d="M4 8h16M4 16h16"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="menu"
+    aria-hidden="true"
+    inert
+    class="pointer-events-none fixed inset-0 z-50 bg-white/80 opacity-0 backdrop-blur-2xl transition-opacity duration-200 ease-out dark:bg-base-950/85"
+  >
+    <div class="mx-auto flex h-full max-w-3xl flex-col px-8 py-4">
+      <button
+        type="button"
+        id="menu-close"
+        aria-label="Close menu"
+        class="ml-auto grid size-9 place-items-center rounded-full text-base-900 transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:text-white"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" class="size-5">
+          <path d="M6 6l12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+
+      <div class="my-auto flex flex-col items-end gap-2 py-12">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              download={link.download}
+              class="menu-link translate-y-2 rounded-sm font-display text-4xl italic tracking-wide text-base-900 opacity-0 transition-[opacity,transform,color] duration-200 ease-out hover:text-base-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 sm:text-5xl dark:text-white dark:hover:text-base-400"
             >
-              <Plus
-                class="transition duration-300 ease-in-out size-5 shrink-0 stroke-base-950 dark:stroke-white"
-              />
-            </button>
-            <nav role="navigation" class="flex flex-col mt-4 gap-y-2">
-              {
-                navLinks.map((link) => (
-                  <div class="flex justify-end">
-                    <Text
-                      tag="a"
-                      variant="textXL"
-                      underlined={true}
-                      href={link.href}
-                      title={link.text}
-                      aria-label={link.text}
-                      class="block text-right dark:text-white text-base-900"
-                    >
-                      {link.text}
-                    </Text>
-                  </div>
-                ))
-              }
-              <!-- Add mobile-only menu items for the hidden elements -->
-              <div class="flex justify-end md:hidden">
-                <Text
-                  tag="a"
-                  variant="textXL"
-                  underlined={true}
-                  href="/system/overview"
-                  title="Overview"
-                  aria-label="Overview"
-                  class="block text-right dark:text-white text-base-900"
-                >
-                  Overview
-                </Text>
-              </div>
-              <div class="flex justify-end md:hidden">
-                <Text
-                  tag="a"
-                  variant="textXL"
-                  underlined={true}
-                  href="https://buy.polar.sh/polar_cl_8Org8z858D00MUHXL3Jz5x6_VEmLnfI9sCQBW-QRDIU"
-                  title="Buy Flaco"
-                  aria-label="Buy Flaco"
-                  class="block text-right dark:text-white text-base-900"
-                >
-                  Buy Flaco
-                </Text>
-              </div>
-            </nav>
-          </Wrapper>
-        </div>
+              {link.text}
+            </a>
+          ))
+        }
       </div>
-    </nav>
-  </Wrapper>
+
+      <p class="text-right text-sm text-base-500 dark:text-base-400">
+        Software & data engineer · Mississauga, Ontario
+      </p>
+    </div>
+  </div>
 </header>
 
-<script type="module">
-  // Wait for the DOM content to fully load before executing the script
-  document.addEventListener("DOMContentLoaded", (event) => {
-    // Get references to the menu toggle button, menu content, and close button
-    const menuToggle = document.getElementById("menuToggle");
-    const menuContent = document.getElementById("menuContent");
-    const closeMenu = document.getElementById("closeMenu");
-    // Function to toggle the visibility of the menu
-    function toggleMenu() {
-      // Check if the menu is currently closed (based on the presence of a specific class)
-      const isOpening = menuContent.classList.contains("opacity-0");
-      // Toggle classes to show/hide the menu
-      menuContent.classList.toggle("opacity-0"); // Controls the opacity of the menu
-      menuContent.classList.toggle("pointer-events-none"); // Toggles pointer event handling for the menu
-      document.body.classList.toggle("overflow-hidden-no-shift"); // Toggles overflow behavior for the body element
-      // If the menu is opening, reset and animate its links
-      if (isOpening) {
-        setTimeout(() => resetAndAnimateLinks(), 10); // Delay to ensure animations are applied correctly
-      }
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const close = document.getElementById("menu-close");
+  const menu = document.getElementById("menu");
+  const links = menu?.querySelectorAll(".menu-link") ?? [];
+
+  const setMenu = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menu.setAttribute("aria-hidden", String(!open));
+    menu.toggleAttribute("inert", !open);
+    menu.classList.toggle("pointer-events-none", !open);
+    menu.classList.toggle("opacity-0", !open);
+    document.body.classList.toggle("overflow-hidden", open);
+
+    links.forEach((link, index) => {
+      window.setTimeout(() => {
+        link.classList.toggle("translate-y-2", !open);
+        link.classList.toggle("opacity-0", !open);
+      }, open ? index * 45 : 0);
+    });
+
+    if (open) window.setTimeout(() => close?.focus(), 80);
+  };
+
+  toggle?.addEventListener("click", () => setMenu(true));
+  close?.addEventListener("click", () => setMenu(false));
+  links.forEach((link) => link.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toggle?.getAttribute("aria-expanded") === "true") {
+      setMenu(false);
+      toggle.focus();
     }
-    // Function to reset and apply animations to the navigation links
-    function resetAndAnimateLinks() {
-      // Select all anchor links inside the navigation
-      const navLinks = document.querySelectorAll("nav a");
-      // Loop through each link to reset its styles and apply animations
-      navLinks.forEach((link, index) => {
-        // Reset the opacity and position of each link to an initial state
-        link.style.opacity = "0";
-        link.style.transform = "translateY(20px)";
-        link.style.transition = "none"; // Remove any pre-existing transitions
-        // Apply a delayed animation to each link
-        setTimeout(() => {
-          // Set transition styles for opacity and position, with a delay based on the index
-          link.style.transition = `opacity 0.3s ease-out ${index * 0.1}s, transform 0.3s ease-out ${index * 0.1}s`;
-          link.style.opacity = "1"; // Fade the link in
-          link.style.transform = "translateY(0)"; // Move the link back to its original position
-        }, 50);
-      });
-    }
-    // Attach the toggleMenu function to the menu toggle button's click event
-    menuToggle.addEventListener("click", toggleMenu);
-    // Attach the toggleMenu function to the close button's click event
-    closeMenu.addEventListener("click", toggleMenu);
   });
 </script>

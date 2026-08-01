@@ -1,16 +1,42 @@
 ---
-// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-// Sections
 import Hero from "@/components/landing/Hero.astro";
 import ProjectsPreview from "@/components/landing/ProjectsPreview.astro";
-import BlogPreview from "@/components/landing/BlogPreview.astro";
-import StackPeview from "@/components/landing/StackPeview.astro";
+import Experience from "@/components/landing/Experience.astro";
+import Capabilities from "@/components/landing/Capabilities.astro";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sobhi El-Safady",
+  jobTitle: "Software and Data Engineer",
+  email: "mailto:sobhi.safady@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mississauga",
+    addressRegion: "ON",
+    addressCountry: "CA",
+  },
+  sameAs: ["https://www.linkedin.com/in/sobhi-e-3a949b1b4"],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "École de technologie supérieure",
+  },
+  knowsAbout: [
+    "Industrial software",
+    "Embedded systems",
+    "ERP",
+    "MES",
+    "PLM",
+    "Data engineering",
+    "Software automation",
+  ],
+};
 ---
 
-<BaseLayout>
+<BaseLayout structuredData={personSchema}>
   <Hero />
   <ProjectsPreview />
-  <BlogPreview />
-  <StackPeview />
+  <Experience />
+  <Capabilities />
 </BaseLayout>

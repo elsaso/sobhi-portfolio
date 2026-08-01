@@ -1,42 +1,35 @@
 ---
-// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Components
 import ProjectCard2 from "@/components/projects/ProjectCard2.astro";
-// Content
 import { getCollection } from "astro:content";
-const allProjects = await getCollection("projects");
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order
+);
 ---
-<BaseLayout>
+
+<BaseLayout
+  title="Software Projects | Sobhi El-Safady"
+  description="Industrial software, embedded systems, mobile applications, SaaS products, and data-driven tools built by Sobhi El-Safady."
+>
   <section>
-    <Wrapper class="py-24">
+    <div class="mx-auto max-w-3xl px-8 py-24">
       <div class="text-center">
-        <Text
-          tag="h1"
-          variant="displayXL"
-          class="text-balance dark:text-white text-base-900"
-        >
-          I like to build
-          <span
-            class="italic tracking-wide font-display dark:text-base-400 text-base-600"
-          >
-            projects from scrach
+        <h1 class="text-balance text-4xl font-medium tracking-tight text-base-900 sm:text-5xl lg:text-6xl dark:text-white">
+          Software built for
+          <span class="font-display italic tracking-wide text-base-600 dark:text-base-400">
+            real products and operations.
           </span>
-        </Text>
-        <Text
-          tag="p"
-          variant="textLG"
-          class="mt-4 dark:text-base-400 text-base-600"
-        >
-          When I'm not working I build things that make me explore and learn,
-          and I love to share my projects with the world.
-        </Text>
+        </h1>
+        <p class="mx-auto mt-5 max-w-2xl text-balance text-lg leading-8 text-base-600 dark:text-base-400">
+          Industrial tools, embedded systems, mobile products, and SaaS platforms.
+          Each case study explains the context, my contribution, and the result.
+        </p>
       </div>
-      <div class="flex flex-col mt-6 gap-2">
-        {allProjects.map((post) => <ProjectCard2 post={post} />)}
+
+      <div class="mt-10 flex flex-col gap-3">
+        {projects.map((project) => <ProjectCard2 post={project} />)}
       </div>
-    </Wrapper>
+    </div>
   </section>
 </BaseLayout>
