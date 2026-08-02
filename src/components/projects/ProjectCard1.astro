@@ -24,6 +24,8 @@ const { title, subtitle, industry, role, period, technologies, highlights, image
       alt={image.alt}
       width={1200}
       height={675}
+      loading="eager"
+      fetchpriority={wide ? "high" : "auto"}
       class="aspect-[16/7] w-full object-cover opacity-90 saturate-[0.82] transition-[transform,opacity,filter] duration-500 ease-out group-hover:scale-[1.03] group-hover:opacity-100 group-hover:saturate-100"
     />
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-void/85 via-transparent to-void/25"></div>

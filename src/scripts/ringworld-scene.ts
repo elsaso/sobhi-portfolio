@@ -29,6 +29,7 @@ import {
   RingGeometry,
   Scene,
   ShaderMaterial,
+  SphereGeometry,
   Sprite,
   SpriteMaterial,
   SRGBColorSpace,

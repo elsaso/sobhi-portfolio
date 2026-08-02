@@ -15,17 +15,28 @@
 | **SEO helpers** | `@lexingtonthemes/seo` — `AstroSeo` in `src/components/fundations/head/Seo.astro` |
 | **Other deps** | `reading-time` (blog), Shiki `github-dark` for markdown in `astro.config.mjs` |
 
+## Cinematic design system (current site direction)
+
+The site is now **dark-only** ("ringworld" cinematic art direction). The old light/dark theming is gone: `ThemeToggle.astro` and `ToggleLocalStorage.astro` were removed, `color-scheme` is `dark`, and components must not use `dark:` variants.
+
+- **Tokens** (`src/styles/global.css` `@theme`): `--color-void` (#020710 page bg), `--color-abyss`, `--color-panel`, `--color-panel-raised`, `--color-line` (hairlines), `--color-holo-200..500` (cyan accents), `--color-signal` (#84cc16 lime, status dots only), cool `--color-base-*` scale. `.flaco-card` is a graphite technical panel (no rounded-3xl cards).
+- **Typography**: Geist (sans), Geist Mono (telemetry/labels, uppercase, wide tracking), Instrument Serif (`font-display`, italic accents). Uppercase only for headings, classifications, telemetry.
+- **Hero scene**: `src/scripts/ringworld-scene.ts` (Three.js + `three/addons` postprocessing: EffectComposer + UnrealBloomPass + OutputPass on all devices; compact mode only reduces geometry/texture sizes, pixel ratio, and frame rate). Scroll-driven CatmullRom camera path with eased `smoothProgress`, render-on-demand loop with low-rate ambient tick, full dispose on `pagehide`.
+- **Hero debug/verification params**: `/?traverse=<0..1>` pins traversal progress (skips camera easing); `?scene=full` forces non-compact quality. `scripts/cdp-shot.mjs` is a dependency-free CDP screenshot harness (`node scripts/cdp-shot.mjs <url> <out.png> <w> <h> [scrollY|#selector] [settleMs]`); headless captures need `--enable-unsafe-swiftshader`.
+- **Reduced motion**: hero collapses to a single static frame (100svh, stage 0 only); the scene renders one frame at progress 0.
+
 ## Folder map
 
 | Path | Role |
 |------|------|
 | `src/pages/` | File-based routes (home, blog, work, store, projects, forms, system, RSS). |
 | `src/layouts/` | `BaseLayout.astro`, `BlogLayout.astro`, `WorkLayout.astro`, `StoreLayout.astro`, `ProjectsLayout.astro`. |
-| `src/components/` | `global/` (Navigation, Footer, Search), `landing/`, `blog/`, `work/`, `store/`, `projects/`, `stack/`, `assets/`, **`fundations/`** (head, elements, icons, scripts). |
+| `src/components/` | `global/` (Navigation, Footer, Search), `landing/` (Hero, Experience, Capabilities, ProjectsPreview), `blog/`, `work/`, `store/`, `projects/`, `stack/`, **`fundations/`** (head, elements, icons). |
 | `src/content/` | Markdown entries: `posts/`, `work/`, `store/`, `projects/`. |
 | `src/styles/` | `global.css` — Tailwind v4 `@theme`, fonts, colors, keyframes. |
+| `src/scripts/` | `ringworld-scene.ts` — Three.js ringworld hero scene. |
 | `src/images/` | Optimized assets (`astro:assets`); subfolders e.g. `blog/`, `work/`, `store/`, `projects/`, `brands/`, `assets/`. |
-| `public/` | **Not present in this repo.** |
+| `public/` | Static files served at root (résumé PDF, icons, `og/`, `robots.txt`, `manifest.webmanifest`). |
 
 Path alias: `@/*` → `src/*` (`tsconfig.json`).
 
