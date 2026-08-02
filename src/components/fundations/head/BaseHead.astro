@@ -2,7 +2,6 @@
 import Seo from "@/components/fundations/head/Seo.astro";
 import Fonts from "@/components/fundations/head/Fonts.astro";
 import Favicons from "@/components/fundations/head/Favicons.astro";
-import ToggleLocalStorage from "@/components/fundations/scripts/ToggleLocalStorage.astro";
 
 interface Props {
   title: string;
@@ -23,8 +22,8 @@ const {
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#0b1018" />
-<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#020710" />
+<meta name="color-scheme" content="dark" />
 <Seo
   title={title}
   description={description}
@@ -34,4 +33,3 @@ const {
 />
 <Fonts />
 <Favicons />
-<ToggleLocalStorage />

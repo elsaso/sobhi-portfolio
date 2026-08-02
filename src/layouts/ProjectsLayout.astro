@@ -10,56 +10,66 @@ const { frontmatter, previous, next } = Astro.props;
   description={frontmatter.subtitle}
 >
   <article>
-    <div class="mx-auto max-w-3xl px-8 py-20 sm:py-24">
-      <header class="text-center">
-        <a
-          href="/projects/"
-          class="group inline-flex items-center gap-2 rounded-sm text-sm text-base-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:text-base-400"
-        >
-          <span aria-hidden="true" class="transition-transform duration-150 group-hover:-translate-x-1">←</span>
-          All projects
-        </a>
-        <Image
-          src={frontmatter.logo.url}
-          alt={frontmatter.logo.alt}
-          width={160}
-          height={160}
-          class="mx-auto mt-10 size-14 rounded-xl shadow ring-1 ring-base-200 dark:ring-base-800"
-        />
-        <h1 class="mt-7 text-balance font-display text-5xl italic tracking-wide text-base-900 sm:text-6xl dark:text-white">
-          {frontmatter.title}
-        </h1>
-        <p class="mx-auto mt-4 max-w-2xl text-balance text-lg leading-8 text-base-600 dark:text-base-400">
-          {frontmatter.subtitle}
-        </p>
+    <div class="mx-auto max-w-6xl px-6 py-20 sm:px-10 sm:py-24">
+      <a
+        href="/projects/"
+        class="group inline-flex items-center gap-2 rounded-sm font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 transition-colors duration-150 hover:text-holo-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
+      >
+        <span aria-hidden="true" class="transition-transform duration-150 group-hover:-translate-x-1">←</span>{" "}
+        All projects
+      </a>
+
+      <header class="mt-10 grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-holo-300">
+            Dossier // {frontmatter.industry}
+          </p>
+          <h1 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.03em] text-white sm:text-6xl">
+            {frontmatter.title}
+          </h1>
+          <p class="mt-6 max-w-2xl text-balance text-lg leading-8 text-white/60">
+            {frontmatter.subtitle}
+          </p>
+
+          <dl class="mt-10 grid gap-px border border-line/70 bg-line/40 sm:grid-cols-3">
+            <div class="bg-void px-4 py-3.5">
+              <dt class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">Role</dt>
+              <dd class="mt-2 text-sm leading-6 text-white/85">{frontmatter.role}</dd>
+            </div>
+            <div class="bg-void px-4 py-3.5">
+              <dt class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">Organization</dt>
+              <dd class="mt-2 text-sm leading-6 text-white/85">{frontmatter.organization}</dd>
+            </div>
+            <div class="bg-void px-4 py-3.5">
+              <dt class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">Period</dt>
+              <dd class="mt-2 text-sm leading-6 text-white/85">{frontmatter.period}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="relative">
+          <Image
+            src={frontmatter.image.url}
+            alt={frontmatter.image.alt}
+            width={1200}
+            height={675}
+            class="aspect-[16/10] w-full border border-line/70 object-cover saturate-[0.85]"
+            priority
+          />
+          <span class="pointer-events-none absolute -left-px -top-px size-4 border-l-2 border-t-2 border-holo-400/70" aria-hidden="true"></span>
+          <span class="pointer-events-none absolute -bottom-px -right-px size-4 border-b-2 border-r-2 border-holo-400/70" aria-hidden="true"></span>
+        </div>
       </header>
 
-      <Image
-        src={frontmatter.image.url}
-        alt={frontmatter.image.alt}
-        width={1200}
-        height={675}
-        class="mt-10 aspect-[16/9] w-full rounded-2xl object-cover shadow"
-      />
-
-      <dl class="mt-6 grid gap-5 border-b border-base-200 pb-7 text-sm sm:grid-cols-3 dark:border-base-800">
-        <div>
-          <dt class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Role</dt>
-          <dd class="mt-2 leading-6 text-base-900 dark:text-white">{frontmatter.role}</dd>
-        </div>
-        <div>
-          <dt class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Organization</dt>
-          <dd class="mt-2 leading-6 text-base-900 dark:text-white">{frontmatter.organization}</dd>
-        </div>
-        <div>
-          <dt class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Period</dt>
-          <dd class="mt-2 leading-6 text-base-900 dark:text-white">{frontmatter.period}</dd>
-        </div>
-      </dl>
-
-      <div class="mt-7 flex flex-wrap items-center justify-between gap-5">
-        <ul class="flex flex-wrap gap-x-4 gap-y-2 text-xs text-base-500 dark:text-base-400" aria-label="Technologies used">
-          {frontmatter.technologies.map((technology) => <li>{technology}</li>)}
+      <div class="mt-8 flex flex-wrap items-center justify-between gap-5 border-y border-line/70 py-5">
+        <ul class="flex flex-wrap gap-1.5" aria-label="Technologies used">
+          {
+            frontmatter.technologies.map((technology) => (
+              <li class="border border-line/80 bg-panel/50 px-2 py-1 font-mono text-[10px] tracking-[0.08em] text-white/60">
+                {technology}
+              </li>
+            ))
+          }
         </ul>
         {
           frontmatter.links.length > 0 ? (
@@ -69,25 +79,27 @@ const { frontmatter, previous, next } = Astro.props;
                   href={link.url}
                   target="_blank"
                   rel="noreferrer"
-                  class="inline-flex h-9 items-center rounded-full bg-base-200 px-4 text-xs font-medium text-base-950 transition-[transform,background-color] duration-150 hover:bg-base-100 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-900 dark:text-white dark:hover:bg-base-800"
+                  class="inline-flex h-10 items-center border border-line bg-panel/40 px-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white/75 transition-[transform,border-color,color] duration-150 hover:border-holo-400/50 hover:text-white active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
                 >
                   {link.label} ↗
                 </a>
               ))}
             </div>
           ) : (
-            <p class="text-xs text-base-500 dark:text-base-400">Code and report available on request</p>
+            <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">
+              Code and report available on request
+            </p>
           )
         }
       </div>
 
-      <div class="mt-10 rounded-2xl bg-base-100 p-6 dark:bg-base-900">
-        <p class="text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">At a glance</p>
+      <div class="mt-10 max-w-3xl border border-line/70 bg-panel/30 p-6 sm:p-7">
+        <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-holo-300/90">At a glance</p>
         <ul class="mt-4 space-y-3">
           {
             frontmatter.highlights.map((highlight) => (
-              <li class="flex gap-3 text-sm leading-6 text-base-700 dark:text-base-300">
-                <span class="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent-500"></span>
+              <li class="flex gap-3 text-sm leading-6 text-white/70">
+                <span class="mt-2.5 size-1.5 shrink-0 rounded-full bg-signal shadow-[0_0_8px_rgba(132,204,22,.6)]"></span>
                 {highlight}
               </li>
             ))
@@ -95,27 +107,27 @@ const { frontmatter, previous, next } = Astro.props;
         </ul>
       </div>
 
-      <div class="prose prose-lg mx-auto mt-14 max-w-3xl prose-headings:font-normal prose-headings:text-base-900 prose-h2:font-display prose-h2:text-4xl prose-h2:italic prose-h2:tracking-wide prose-h3:text-2xl prose-p:leading-8 prose-p:text-base-600 prose-strong:font-medium prose-strong:text-base-900 prose-a:text-base-900 prose-li:text-base-600 dark:prose-invert dark:prose-headings:text-white dark:prose-p:text-base-400 dark:prose-strong:text-white dark:prose-a:text-white dark:prose-li:text-base-400">
+      <div class="prose prose-lg mx-auto mt-16 max-w-3xl prose-headings:font-normal prose-headings:text-white prose-h2:mt-14 prose-h2:font-display prose-h2:text-4xl prose-h2:italic prose-h2:tracking-wide prose-h3:text-2xl prose-p:leading-8 prose-p:text-white/60 prose-strong:font-medium prose-strong:text-white prose-a:text-holo-300 prose-li:text-white/60 prose-li:marker:text-holo-400/70">
         <slot />
       </div>
 
-      <nav aria-label="Project navigation" class="mt-20 flex flex-col justify-between gap-5 border-t border-base-200 pt-7 text-sm sm:flex-row dark:border-base-800">
-        <div>
+      <nav aria-label="Project navigation" class="mt-20 grid gap-px border border-line/70 bg-line/40 text-sm sm:grid-cols-2">
+        <div class="bg-void p-5">
           {
             previous && (
-              <a href={`/projects/${previous.id}`} class="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500">
-                <span class="block text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Previous</span>
-                <span class="mt-2 block text-base-900 group-hover:text-base-600 dark:text-white dark:group-hover:text-base-400">← {previous.data.title}</span>
+              <a href={`/projects/${previous.id}`} class="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400">
+                <span class="block font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">← Previous dossier</span>
+                <span class="mt-2.5 block text-white/80 transition-colors duration-150 group-hover:text-holo-300">{previous.data.title}</span>
               </a>
             )
           }
         </div>
-        <div>
+        <div class="bg-void p-5 sm:text-right">
           {
             next && (
-              <a href={`/projects/${next.id}`} class="group block text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 sm:text-right">
-                <span class="block text-xs uppercase tracking-[0.12em] text-base-500 dark:text-base-400">Next</span>
-                <span class="mt-2 block text-base-900 group-hover:text-base-600 dark:text-white dark:group-hover:text-base-400">{next.data.title} →</span>
+              <a href={`/projects/${next.id}`} class="group block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400">
+                <span class="block font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">Next dossier →</span>
+                <span class="mt-2.5 block text-white/80 transition-colors duration-150 group-hover:text-holo-300">{next.data.title}</span>
               </a>
             )
           }

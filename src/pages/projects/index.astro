@@ -13,21 +13,24 @@ const projects = (await getCollection("projects")).sort(
   description="Industrial software, embedded systems, mobile applications, SaaS products, and data-driven tools built by Sobhi El-Safady."
 >
   <section>
-    <div class="mx-auto max-w-3xl px-8 py-24">
-      <div class="text-center">
-        <h1 class="text-balance text-4xl font-medium tracking-tight text-base-900 sm:text-5xl lg:text-6xl dark:text-white">
-          Software built for
-          <span class="font-display italic tracking-wide text-base-600 dark:text-base-400">
+    <div class="mx-auto max-w-6xl px-6 py-24 sm:px-10">
+      <div class="max-w-3xl">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-holo-300">
+          Archive // {String(projects.length).padStart(2, "0")} dossiers
+        </p>
+        <h1 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
+          Software built for{" "}
+          <span class="font-display italic tracking-normal text-white/50">
             real products and operations.
           </span>
         </h1>
-        <p class="mx-auto mt-5 max-w-2xl text-balance text-lg leading-8 text-base-600 dark:text-base-400">
+        <p class="mt-6 max-w-2xl text-balance text-lg leading-8 text-white/55">
           Industrial tools, embedded systems, mobile products, and SaaS platforms.
           Each case study explains the context, my contribution, and the result.
         </p>
       </div>
 
-      <div class="mt-10 flex flex-col gap-3">
+      <div class="mt-12 grid gap-4">
         {projects.map((project) => <ProjectCard2 post={project} />)}
       </div>
     </div>

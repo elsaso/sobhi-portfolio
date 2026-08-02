@@ -3,7 +3,6 @@ import "@/styles/global.css";
 import BaseHead from "@/components/fundations/head/BaseHead.astro";
 import Footer from "@/components/global/Footer.astro";
 import Navigation from "@/components/global/Navigation.astro";
-import ThemeToggle from "@/components/assets/ThemeToggle.astro";
 
 interface Props {
   title?: string;
@@ -33,16 +32,13 @@ const {
       structuredData={structuredData}
     />
   </head>
-  <body
-    class="flex min-h-svh flex-col bg-white text-base-900 transition-colors duration-200 dark:bg-base-950 dark:text-white"
-  >
+  <body class="flex min-h-svh flex-col bg-void text-white">
     <a
       href="#main-content"
-      class="sr-only z-[100] rounded-md bg-accent-600 px-4 py-2 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      class="sr-only z-[100] rounded-md bg-holo-400 px-4 py-2 text-sm font-semibold text-void focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
     >
       Skip to content
     </a>
-    <ThemeToggle class="fixed bottom-3 left-3 z-40 shadow-sm lg:bottom-4 lg:left-4" />
     <Navigation />
     <main id="main-content" class="relative grow"><slot /></main>
     <Footer />

@@ -7,29 +7,32 @@ const projects = (await getCollection("projects"))
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section id="work">
-  <div class="mx-auto max-w-3xl px-8 py-14 sm:py-20">
-    <div class="flex items-end justify-between gap-6">
+<section id="work" class="border-t border-line/70">
+  <div class="mx-auto max-w-6xl px-6 py-20 sm:px-10 sm:py-28">
+    <div class="flex flex-wrap items-end justify-between gap-6">
       <div>
-        <p class="text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">
-          Manufacturing, products, and systems
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-holo-300">
+          02 // operational dossiers
         </p>
-        <h2 class="mt-2 font-display text-4xl italic tracking-wide text-base-900 dark:text-white">
+        <h2 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.03em] text-white sm:text-5xl">
           Selected work
         </h2>
+        <p class="mt-4 max-w-md text-sm leading-6 text-white/50">
+          Manufacturing, products, and systems.
+        </p>
       </div>
       <a
         href="/projects/"
-        class="shrink-0 rounded-full bg-base-200 px-4 py-2 text-xs font-medium text-base-950 transition-[transform,background-color] duration-150 hover:bg-base-100 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-900 dark:text-white dark:hover:bg-base-800"
+        class="inline-flex h-10 shrink-0 items-center border border-line bg-panel/40 px-5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/70 backdrop-blur-md transition-[transform,border-color,color] duration-150 hover:border-holo-400/50 hover:text-white active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
       >
-        See all projects
+        All projects →
       </a>
     </div>
 
-    <div class="mt-7 grid gap-3 md:grid-cols-2">
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
       {
         projects.map((project, index) => (
-          <ProjectCard1 post={project} wide={index === projects.length - 1} />
+          <ProjectCard1 post={project} wide={index === 0} />
         ))
       }
     </div>

@@ -9,7 +9,11 @@
       class="absolute inset-0 size-full"
       aria-hidden="true"
     ></canvas>
-    <div id="webgl-fallback" class="ring-fallback pointer-events-none absolute inset-0"></div>
+    <canvas
+      id="webgl-fallback"
+      class="ring-fallback pointer-events-none absolute inset-0 size-full"
+      aria-hidden="true"
+    ></canvas>
 
     <div class="hero-vignette pointer-events-none absolute inset-0"></div>
     <div class="hero-grid pointer-events-none absolute inset-0 opacity-30"></div>
@@ -58,7 +62,7 @@
           01 // systems entry
         </p>
         <h1 class="mt-5 max-w-5xl text-balance text-[clamp(3rem,8vw,8rem)] font-medium uppercase leading-[0.86] tracking-[-0.065em]">
-          Software for
+          Software for{" "}
           <span class="block text-white/60">the physical world.</span>
         </h1>
         <div class="mt-7 max-w-xl">
@@ -83,7 +87,7 @@
           02 // cross-layer engineering
         </p>
         <h2 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-          From embedded control
+          From embedded control{" "}
           <span class="font-display italic tracking-normal text-white/45">to operational intelligence.</span>
         </h2>
         <p class="ml-auto mt-6 max-w-lg text-base leading-7 text-white/55">
@@ -99,7 +103,7 @@
           03 // one connected stack
         </p>
         <h2 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
-          Edge. Data. Product.
+          Edge. Data. Product.{" "}
           <span class="block font-display italic tracking-normal text-white/45">No handoff gaps.</span>
         </h2>
         <p class="mt-6 max-w-lg text-base leading-7 text-white/55">
@@ -125,7 +129,7 @@
           href="#work"
           class="pointer-events-auto mt-8 inline-flex h-11 items-center rounded-full bg-white px-6 text-sm font-medium text-black transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7dd3fc]"
         >
-          View selected work
+          View selected work{" "}
           <span aria-hidden="true" class="ml-2">↓</span>
         </a>
       </div>
@@ -145,6 +149,14 @@
       linear-gradient(to bottom, rgba(2, 7, 16, 0.08), transparent 35%, rgba(2, 7, 16, 0.48));
   }
 
+  @media (max-width: 640px) {
+    .hero-vignette {
+      background:
+        radial-gradient(circle at center, transparent 30%, rgba(2, 7, 16, 0.08) 58%, rgba(2, 7, 16, 0.55) 100%),
+        linear-gradient(to bottom, rgba(2, 7, 16, 0.05), transparent 35%, rgba(2, 7, 16, 0.35));
+    }
+  }
+
   .hero-grid {
     background-image: radial-gradient(rgba(184, 229, 255, .18) .6px, transparent .6px);
     background-size: 28px 28px;
@@ -152,7 +164,7 @@
   }
 
   .ring-fallback {
-    background: radial-gradient(circle at 50% 44%, rgba(38, 157, 220, .1), transparent 38%), #020710;
+    background: #020710;
     transition: opacity 450ms cubic-bezier(0.23, 1, 0.32, 1);
     will-change: opacity;
   }
@@ -196,7 +208,9 @@
   if (section instanceof HTMLElement && canvas instanceof HTMLCanvasElement) {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    const compact = coarsePointer || window.innerWidth < 720;
+    const qualityParam = new URLSearchParams(window.location.search).get("scene");
+    const compact =
+      qualityParam === "full" ? false : coarsePointer || window.innerWidth < 720;
     const stages = [...section.querySelectorAll(".hero-stage")];
     const progressBar = document.getElementById("hero-progress");
     const percent = document.getElementById("hero-percent");
@@ -216,6 +230,42 @@
     const sceneModule = import("@/scripts/ringworld-scene");
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    // Optional deep-link for a specific traversal beat, e.g. ?traverse=0.54
+    const traverseParam = new URLSearchParams(window.location.search).get("traverse");
+    const pinnedProgress =
+      traverseParam === null ? null : clamp(Number.parseFloat(traverseParam) || 0, 0, 1);
+
+    // Paint a static starfield so the first frame matches the 3D composition.
+    const paintFallback = () => {
+      if (!(fallback instanceof HTMLCanvasElement)) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      fallback.width = Math.floor(width * dpr);
+      fallback.height = Math.floor(height * dpr);
+      const context = fallback.getContext("2d");
+      if (!context) return;
+      context.fillStyle = "#020710";
+      context.fillRect(0, 0, fallback.width, fallback.height);
+      let seed = 20260801;
+      const random = () => {
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        return seed / 4294967296;
+      };
+      const stars = compact ? 140 : 260;
+      for (let index = 0; index < stars; index += 1) {
+        const x = random() * fallback.width;
+        const y = random() * fallback.height;
+        const radius = (0.3 + random() * 0.9) * dpr;
+        context.fillStyle = `rgba(154, 187, 212, ${0.18 + random() * 0.5})`;
+        context.beginPath();
+        context.arc(x, y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+    };
+    paintFallback();
+
     const rangeOpacity = (progress, start, end) => {
       const fade = 0.075;
       return clamp(Math.min((progress - start) / fade, (end - progress) / fade), 0, 1);
@@ -262,7 +312,9 @@
     };
 
     const updateScroll = () => {
-      if (reducedMotion) {
+      if (pinnedProgress !== null) {
+        targetProgress = reducedMotion ? 0 : pinnedProgress;
+      } else if (reducedMotion) {
         targetProgress = 0;
       } else {
         const rect = section.getBoundingClientRect();
@@ -279,6 +331,7 @@
     };
 
     const resize = () => {
+      paintFallback();
       ringScene?.resize(window.innerWidth, window.innerHeight);
     };
 
@@ -313,6 +366,7 @@
         ringScene = createRingworldScene(canvas, {
           compact,
           reducedMotion,
+          initialProgress: pinnedProgress ?? undefined,
           onFrame: updateTelemetry,
           onReady: () => {
             if (fallback instanceof HTMLElement) fallback.style.opacity = "0";

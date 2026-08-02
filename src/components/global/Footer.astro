@@ -1,36 +1,62 @@
-<footer id="contact">
-  <div class="mx-auto flex max-w-3xl flex-col px-8 py-24 text-center">
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="mx-auto size-8 text-base-900 dark:text-white">
-      <path d="M9 16h22v9H9zM33 8h22v9H33zM9 31h22v9H9zM33 23h22v9H33zM9 46h22v9H9zM33 38h22v9H33z" fill="currentColor"/>
-    </svg>
+<footer id="contact" class="border-t border-line/70">
+  <div class="mx-auto max-w-6xl px-6 py-20 sm:px-10 sm:py-28">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
+      <div>
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-holo-300">
+          05 // transmission
+        </p>
+        <h2 class="mt-5 max-w-xl text-balance text-4xl font-medium leading-[0.95] tracking-[-0.03em] text-white sm:text-5xl">
+          Looking for an engineer who understands{" "}
+          <span class="font-display italic tracking-normal text-white/50">both code and operations?</span>
+        </h2>
+        <p class="mt-6 max-w-md text-base leading-7 text-white/55">
+          Based in Mississauga · Open across Canada
+        </p>
 
-    <p class="mt-10 text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">
-      Based in Mississauga · Open across Canada
-    </p>
-    <h2 class="mx-auto mt-4 max-w-2xl text-balance text-3xl font-medium tracking-tight text-base-900 sm:text-4xl dark:text-white">
-      Looking for an engineer who understands
-      <span class="font-display italic tracking-wide text-base-600 dark:text-base-400">both code and operations?</span>
-    </h2>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="mailto:sobhi.safady@gmail.com"
+            class="inline-flex h-11 items-center bg-white px-6 text-sm font-medium text-black transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
+          >
+            Email Sobhi
+          </a>
+          <a
+            href="https://www.linkedin.com/in/sobhi-e-3a949b1b4"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex h-11 items-center border border-line bg-panel/40 px-6 text-sm font-medium text-white backdrop-blur-md transition-[transform,border-color] duration-150 hover:border-holo-400/50 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
+          >
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a
-        href="mailto:sobhi.safady@gmail.com"
-        class="inline-flex h-10 items-center rounded-full bg-base-900 px-5 text-sm font-medium text-white transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-100 dark:text-base-950"
-      >
-        Email Sobhi
-      </a>
-      <a
-        href="https://www.linkedin.com/in/sobhi-e-3a949b1b4"
-        target="_blank"
-        rel="noreferrer"
-        class="inline-flex h-10 items-center rounded-full bg-base-200 px-5 text-sm font-medium text-base-950 transition-[transform,background-color] duration-150 hover:bg-base-100 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:bg-base-900 dark:text-white dark:hover:bg-base-800"
-      >
-        LinkedIn
-      </a>
+      <dl class="grid content-start gap-px self-start border border-line/70 bg-line/40 font-mono text-[10px] uppercase tracking-[0.18em] sm:grid-cols-2 lg:grid-cols-1">
+        <div class="bg-void px-4 py-3">
+          <dt class="text-white/35">Channel</dt>
+          <dd class="mt-1.5 normal-case tracking-normal text-white/75">sobhi.safady@gmail.com</dd>
+        </div>
+        <div class="bg-void px-4 py-3">
+          <dt class="text-white/35">Coordinates</dt>
+          <dd class="mt-1.5 text-white/75">43.59° N / 79.64° W</dd>
+        </div>
+        <div class="bg-void px-4 py-3">
+          <dt class="text-white/35">Status</dt>
+          <dd class="mt-1.5 flex items-center gap-2 text-signal">
+            <span class="size-1.5 rounded-full bg-signal shadow-[0_0_10px_#84cc16]"></span>
+            Available / 2026
+          </dd>
+        </div>
+      </dl>
     </div>
 
-    <p class="mx-auto mt-12 max-w-md text-sm leading-6 text-base-500 dark:text-base-400">
-      © {new Date().getFullYear()} Sobhi El-Safady. Software and data engineer.
-    </p>
+    <div class="mt-16 flex flex-wrap items-center justify-between gap-3 border-t border-line/70 pt-6">
+      <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
+        © {new Date().getFullYear()} Sobhi El-Safady
+      </p>
+      <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
+        Software and data engineer
+      </p>
+    </div>
   </div>
 </footer>

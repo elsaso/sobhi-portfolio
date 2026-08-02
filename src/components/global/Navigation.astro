@@ -3,42 +3,34 @@ const isHome = Astro.url.pathname === "/";
 const anchor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 
 const links = [
-  { text: "Home", href: "/" },
-  { text: "Selected work", href: "/projects/" },
-  { text: "Experience", href: anchor("experience") },
-  { text: "Capabilities", href: anchor("capabilities") },
-  { text: "Résumé", href: "/Sobhi-El-Safady-Resume.pdf", download: true },
-  { text: "Get in touch", href: "mailto:sobhi.safady@gmail.com" },
+  { text: "Home", href: "/", id: "00" },
+  { text: "Selected work", href: "/projects/", id: "01" },
+  { text: "Experience", href: anchor("experience"), id: "02" },
+  { text: "Capabilities", href: anchor("capabilities"), id: "03" },
+  { text: "Contact", href: anchor("contact"), id: "04" },
+  { text: "Résumé", href: "/Sobhi-El-Safady-Resume.pdf", id: "05", download: true },
 ];
 ---
 
 <header class:list={[isHome && "absolute inset-x-0 top-0 z-40 text-white"]}>
   <nav
     aria-label="Primary navigation"
-    class="mx-auto grid w-full max-w-3xl grid-cols-2 items-center gap-4 px-8 py-4"
+    class="mx-auto grid w-full max-w-6xl grid-cols-2 items-center gap-4 border-b border-line/60 px-6 py-4 sm:px-10"
   >
     <a
       href="/"
-      class:list={[
-        "w-fit rounded-sm font-display text-2xl italic tracking-wide focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500",
-        isHome ? "text-white" : "text-base-900 dark:text-white",
-      ]}
+      class="w-fit rounded-sm font-display text-2xl italic tracking-wide text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
     >
       Sobhi
     </a>
 
-    <div class="flex items-center justify-end gap-3">
+    <div class="flex items-center justify-end gap-5">
       <a
         href="/Sobhi-El-Safady-Resume.pdf"
         download
-        class:list={[
-          "text-sm transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500",
-          isHome
-            ? "text-white/60 hover:text-white"
-            : "text-base-500 hover:text-base-900 dark:text-base-400 dark:hover:text-white",
-        ]}
+        class="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-white/55 transition-colors duration-150 hover:text-holo-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400 sm:block"
       >
-        Résumé
+        Résumé ↓
       </a>
       <button
         type="button"
@@ -46,12 +38,9 @@ const links = [
         aria-controls="menu"
         aria-expanded="false"
         aria-label="Open menu"
-        class:list={[
-          "grid size-9 place-items-center rounded-full transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500",
-          isHome ? "text-white" : "text-base-900 dark:text-white",
-        ]}
+        class="grid size-10 place-items-center border border-line bg-panel/40 text-white backdrop-blur-md transition-[transform,border-color] duration-150 hover:border-holo-400/50 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" class="size-5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-5">
           <path d="M4 8h16M4 16h16"></path>
         </svg>
       </button>
@@ -62,37 +51,51 @@ const links = [
     id="menu"
     aria-hidden="true"
     inert
-    class="pointer-events-none fixed inset-0 z-50 bg-white/80 opacity-0 backdrop-blur-2xl transition-opacity duration-200 ease-out dark:bg-base-950/85"
+    class="pointer-events-none fixed inset-0 z-50 bg-void/90 opacity-0 backdrop-blur-2xl transition-opacity duration-200 ease-out"
   >
-    <div class="mx-auto flex h-full max-w-3xl flex-col px-8 py-4">
-      <button
-        type="button"
-        id="menu-close"
-        aria-label="Close menu"
-        class="ml-auto grid size-9 place-items-center rounded-full text-base-900 transition-transform duration-150 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 dark:text-white"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" class="size-5">
-          <path d="M6 6l12 12M18 6 6 18"></path>
-        </svg>
-      </button>
+    <div class="mx-auto flex h-full max-w-6xl flex-col px-6 py-4 sm:px-10">
+      <div class="flex items-center justify-between border-b border-line/60 pb-4">
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
+          Navigation // El-Safady systems
+        </p>
+        <button
+          type="button"
+          id="menu-close"
+          aria-label="Close menu"
+          class="grid size-10 place-items-center border border-line bg-panel/40 text-white transition-[transform,border-color] duration-150 hover:border-holo-400/50 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-5">
+            <path d="M6 6l12 12M18 6 6 18"></path>
+          </svg>
+        </button>
+      </div>
 
-      <div class="my-auto flex flex-col items-end gap-2 py-12">
+      <nav aria-label="Menu" class="my-auto flex flex-col items-start gap-3 py-12">
         {
           links.map((link) => (
             <a
               href={link.href}
               download={link.download}
-              class="menu-link translate-y-2 rounded-sm font-display text-4xl italic tracking-wide text-base-900 opacity-0 transition-[opacity,transform,color] duration-200 ease-out hover:text-base-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500 sm:text-5xl dark:text-white dark:hover:text-base-400"
+              class="menu-link group flex translate-y-2 items-baseline gap-4 rounded-sm opacity-0 transition-[opacity,transform] duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-holo-400"
             >
-              {link.text}
+              <span class="font-mono text-[10px] tracking-[0.2em] text-holo-400/70">{link.id}</span>
+              <span class="font-display text-4xl italic tracking-wide text-white transition-colors duration-150 group-hover:text-holo-300 sm:text-6xl">
+                {link.text}
+              </span>
             </a>
           ))
         }
-      </div>
+      </nav>
 
-      <p class="text-right text-sm text-base-500 dark:text-base-400">
-        Software & data engineer · Mississauga, Ontario
-      </p>
+      <div class="flex flex-wrap items-center justify-between gap-3 border-t border-line/60 pt-4">
+        <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">
+          Software & data engineer · Mississauga, Ontario
+        </p>
+        <p class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-signal">
+          <span class="size-1.5 rounded-full bg-signal shadow-[0_0_10px_#84cc16]"></span>
+          Available / 2026
+        </p>
+      </div>
     </div>
   </div>
 </header>

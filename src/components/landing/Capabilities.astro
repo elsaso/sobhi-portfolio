@@ -1,18 +1,21 @@
 ---
 const capabilities = [
   {
+    id: "SYS-01",
     title: "Industrial Software",
     description:
       "Configuration rules, BOMs, ERP/MES/PLM workflows, quoting, inventory, CAD/COM integrations, and process automation.",
     tools: ["ERP", "MES", "PLM", "BOMs", "CAD / COM", "Automation"],
   },
   {
+    id: "SYS-02",
     title: "Embedded & systems",
     description:
       "Software across hardware and network boundaries, from protocol stacks and UART control to video, sensors, and Linux services.",
     tools: ["C / C++", "Java", "ROS 2", "WebRTC", "SIP / H.248", "Linux"],
   },
   {
+    id: "SYS-03",
     title: "Product & data",
     description:
       "Production APIs, data pipelines, mobile and web applications, cloud deployments, tests, monitoring, and release automation.",
@@ -21,47 +24,59 @@ const capabilities = [
 ];
 ---
 
-<section id="capabilities">
-  <div class="mx-auto max-w-3xl px-8 py-20 sm:py-24">
-    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-      <h2 class="font-display text-4xl italic tracking-wide text-base-900 dark:text-white">
-        Capabilities
-      </h2>
-      <p class="max-w-sm text-sm leading-6 text-base-500 sm:text-right dark:text-base-400">
+<section id="capabilities" class="border-t border-line/70">
+  <div class="mx-auto max-w-6xl px-6 py-20 sm:px-10 sm:py-28">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-holo-300">
+          04 // subsystems
+        </p>
+        <h2 class="mt-5 text-balance text-4xl font-medium leading-[0.95] tracking-[-0.03em] text-white sm:text-5xl">
+          Capabilities
+        </h2>
+      </div>
+      <p class="max-w-sm text-sm leading-6 text-white/50 sm:text-right">
         Where software meets hardware, product data, and operational reality.
       </p>
     </div>
 
-    <div class="mt-8 divide-y divide-base-200 border-y border-base-200 dark:divide-base-800 dark:border-base-800">
+    <div class="mt-14 grid gap-px border border-line/70 bg-line/40 lg:grid-cols-3">
       {
-        capabilities.map((capability, index) => (
-          <article class="grid gap-5 py-7 sm:grid-cols-[2.2rem_1fr]">
-            <p class="font-display text-2xl italic text-base-400 dark:text-base-500">
-              {String(index + 1).padStart(2, "0")}
-            </p>
-            <div>
-              <h3 class="text-xl font-medium text-base-900 dark:text-white">{capability.title}</h3>
-              <p class="mt-3 text-sm leading-6 text-base-600 dark:text-base-400">{capability.description}</p>
-              <ul class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs text-base-500 dark:text-base-400">
-                {capability.tools.map((tool) => <li>{tool}</li>)}
-              </ul>
+        capabilities.map((capability) => (
+          <article class="group relative bg-void p-7 transition-colors duration-200 hover:bg-panel/60 sm:p-8">
+            <div class="flex items-center justify-between">
+              <p class="font-mono text-[10px] tracking-[0.22em] text-holo-400/80">{capability.id}</p>
+              <span class="size-1.5 rounded-full bg-signal/80 shadow-[0_0_8px_rgba(132,204,22,.7)]" aria-hidden="true"></span>
             </div>
+            <h3 class="mt-6 text-xl font-medium text-white">{capability.title}</h3>
+            <p class="mt-3 min-h-20 text-sm leading-6 text-white/55">{capability.description}</p>
+            <ul class="mt-6 flex flex-wrap gap-1.5" aria-label={`${capability.title} tools`}>
+              {capability.tools.map((tool) => (
+                <li class="border border-line/80 bg-panel/50 px-2 py-1 font-mono text-[10px] tracking-[0.08em] text-white/60">
+                  {tool}
+                </li>
+              ))}
+            </ul>
+            <span
+              class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-holo-400/0 to-transparent transition-[background] duration-300 group-hover:via-holo-400/60"
+              aria-hidden="true"
+            ></span>
           </article>
         ))
       }
     </div>
 
-    <div class="mt-12 grid gap-8 sm:grid-cols-2">
+    <dl class="mt-14 grid gap-8 border-t border-line/70 pt-8 sm:grid-cols-2 lg:max-w-3xl">
       <div>
-        <p class="text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Education</p>
-        <p class="mt-3 font-medium text-base-900 dark:text-white">B.Eng. Software Engineering</p>
-        <p class="mt-1 text-sm text-base-500 dark:text-base-400">ÉTS · 2020–2024</p>
+        <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">Education</dt>
+        <dd class="mt-3 font-medium text-white">B.Eng. Software Engineering</dd>
+        <dd class="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-white/45">ÉTS · 2020–2024</dd>
       </div>
       <div>
-        <p class="text-xs uppercase tracking-[0.14em] text-base-500 dark:text-base-400">Foundation</p>
-        <p class="mt-3 font-medium text-base-900 dark:text-white">DEC, Computer Science Technology</p>
-        <p class="mt-1 text-sm text-base-500 dark:text-base-400">Cégep de Rosemont · 2017–2020</p>
+        <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">Foundation</dt>
+        <dd class="mt-3 font-medium text-white">DEC, Computer Science Technology</dd>
+        <dd class="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-white/45">Cégep de Rosemont · 2017–2020</dd>
       </div>
-    </div>
+    </dl>
   </div>
 </section>
