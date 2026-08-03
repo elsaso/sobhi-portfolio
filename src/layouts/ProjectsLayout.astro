@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const { frontmatter, previous, next } = Astro.props;
@@ -48,13 +47,15 @@ const { frontmatter, previous, next } = Astro.props;
         </div>
 
         <div class="relative">
-          <Image
-            src={frontmatter.image.url}
+          <img
+            src={frontmatter.image.url.src}
             alt={frontmatter.image.alt}
             width={1200}
             height={675}
             class="aspect-[16/10] w-full border border-line/70 object-cover saturate-[0.85]"
-            priority
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
           />
           <span class="pointer-events-none absolute -left-px -top-px size-4 border-l-2 border-t-2 border-holo-400/70" aria-hidden="true"></span>
           <span class="pointer-events-none absolute -bottom-px -right-px size-4 border-b-2 border-r-2 border-holo-400/70" aria-hidden="true"></span>

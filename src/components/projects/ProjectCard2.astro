@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 const { post } = Astro.props;
 const url = `/projects/${post.id}`;
 const { title, subtitle, role, period, industry, technologies, logo } = post.data;
@@ -45,8 +43,8 @@ const { title, subtitle, role, period, industry, technologies, logo } = post.dat
   </div>
 
   <div class="relative order-first overflow-hidden border-b border-line/70 bg-panel/40 sm:order-last sm:border-b-0 sm:border-l">
-    <Image
-      src={logo.url}
+    <img
+      src={logo.url.src}
       alt={logo.alt}
       width={700}
       height={700}

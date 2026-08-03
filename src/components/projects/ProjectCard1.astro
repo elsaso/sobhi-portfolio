@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 const { post, wide = false } = Astro.props;
 const url = `/projects/${post.id}`;
 const { title, subtitle, industry, role, period, technologies, highlights, image } = post.data;
@@ -19,8 +17,8 @@ const { title, subtitle, industry, role, period, technologies, highlights, image
   ></a>
 
   <div class="relative overflow-hidden border-b border-line/70">
-    <Image
-      src={image.url}
+    <img
+      src={image.url.src}
       alt={image.alt}
       width={1200}
       height={675}
